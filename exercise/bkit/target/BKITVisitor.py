@@ -9,28 +9,8 @@ else:
 
 class BKITVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by BKITParser#program.
-    def visitProgram(self, ctx:BKITParser.ProgramContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKITParser#mptype.
-    def visitMptype(self, ctx:BKITParser.MptypeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKITParser#body.
-    def visitBody(self, ctx:BKITParser.BodyContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKITParser#exp.
-    def visitExp(self, ctx:BKITParser.ExpContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by BKITParser#funcall.
-    def visitFuncall(self, ctx:BKITParser.FuncallContext):
+    # Visit a parse tree produced by BKITParser#prog.
+    def visitProg(self, ctx:BKITParser.ProgContext):
         return self.visitChildren(ctx)
 
 
