@@ -7,6 +7,14 @@ BOOLIT : 'True' | 'False';
 
 ID : LIT ([0-9] | LIT)*;
 
+ARRAY : 'Array';
+
+INT_TYPE : 'Int';
+
+FLOAT_TYPE : 'Float';
+
+BOOL_TYPE : 'Boolean';
+
 INTLIT_16 : '0'[xX][0-9A-F];
 
 INTLIT_2 : '0b'[0-1]+;
@@ -22,19 +30,19 @@ CLASS : 'Class' ;
 
 EXPONENT : [eE][-+]*;
 
-//fragment ESC_DOUB_QUOTE : '\'"';
-
 START_STRING : '"' -> mode(STRING_INSIDE);
 
 //STRING : START_STRING (DOUB_QUOTE | ESCAPE_SEQ | STRING_CHAR)*? END_STRING;
-
-//ESCAPE_SEQ : [\b\f\r\n\t'\\];
 
 ZERO : '0';
 
 DOT : '.';
 
 CM : ',';
+
+LS : '[';
+
+RS : ']';
 
 LB: '(';
 
