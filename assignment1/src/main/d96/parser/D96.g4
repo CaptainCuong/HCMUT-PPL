@@ -10,7 +10,7 @@ options {
 
 
 //program: class_dcl+ EOF;
-program : int_gen EOF;
+program : expr EOF;
 
 comment : DOUB_HASH_MARK .*? DOUB_HASH_MARK;
 
@@ -75,6 +75,7 @@ expr : ID | index_ele | object_ini | lit
      | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access
      | expr binary_op expr
      | unary_op expr
+     | LB expr RB
      ;
 
 object_ini : NEW ID LB expr_list RB;
@@ -250,7 +251,7 @@ INTLIT_2 : '0b'[0-1]+;
 INTLIT_8 : '0'[0-7]+;
 
 
-INTLIT_10 : [1-9]([0-9]'_'?)*[0-9] | [0-9];
+INTLIT_10 : [1-9]'_'?([0-9]'_'?)*[0-9] | [0-9];
 
 fragment LIT : [a-zA-Z_];
 
