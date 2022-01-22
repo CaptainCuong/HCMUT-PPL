@@ -44,6 +44,24 @@ class D96Listener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by D96Parser#att_dcl.
+    def enterAtt_dcl(self, ctx:D96Parser.Att_dclContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#att_dcl.
+    def exitAtt_dcl(self, ctx:D96Parser.Att_dclContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#att_dcl_list.
+    def enterAtt_dcl_list(self, ctx:D96Parser.Att_dcl_listContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#att_dcl_list.
+    def exitAtt_dcl_list(self, ctx:D96Parser.Att_dcl_listContext):
+        pass
+
+
     # Enter a parse tree produced by D96Parser#method_dcl.
     def enterMethod_dcl(self, ctx:D96Parser.Method_dclContext):
         pass
@@ -242,6 +260,15 @@ class D96Listener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by D96Parser#att_access.
+    def enterAtt_access(self, ctx:D96Parser.Att_accessContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#att_access.
+    def exitAtt_access(self, ctx:D96Parser.Att_accessContext):
+        pass
+
+
     # Enter a parse tree produced by D96Parser#instance_att_access.
     def enterInstance_att_access(self, ctx:D96Parser.Instance_att_accessContext):
         pass
@@ -266,6 +293,24 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#index_ele.
     def exitIndex_ele(self, ctx:D96Parser.Index_eleContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#int_object.
+    def enterInt_object(self, ctx:D96Parser.Int_objectContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#int_object.
+    def exitInt_object(self, ctx:D96Parser.Int_objectContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#float_object.
+    def enterFloat_object(self, ctx:D96Parser.Float_objectContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#float_object.
+    def exitFloat_object(self, ctx:D96Parser.Float_objectContext):
         pass
 
 
@@ -365,6 +410,24 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#float_op.
     def exitFloat_op(self, ctx:D96Parser.Float_opContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#static_id_list.
+    def enterStatic_id_list(self, ctx:D96Parser.Static_id_listContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#static_id_list.
+    def exitStatic_id_list(self, ctx:D96Parser.Static_id_listContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#static_id_cmlist.
+    def enterStatic_id_cmlist(self, ctx:D96Parser.Static_id_cmlistContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#static_id_cmlist.
+    def exitStatic_id_cmlist(self, ctx:D96Parser.Static_id_cmlistContext):
         pass
 
 
@@ -518,6 +581,15 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#binary_op.
     def exitBinary_op(self, ctx:D96Parser.Binary_opContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#floatlit.
+    def enterFloatlit(self, ctx:D96Parser.FloatlitContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#floatlit.
+    def exitFloatlit(self, ctx:D96Parser.FloatlitContext):
         pass
 
 
