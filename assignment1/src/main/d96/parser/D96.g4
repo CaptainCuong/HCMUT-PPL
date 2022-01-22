@@ -9,8 +9,8 @@ options {
 }
 
 
-//program: class_dcl+ EOF;
-program : expr EOF;
+program: class_dcl+ EOF;
+//program : method_invoke_stm+ EOF;
 
 comment : DOUB_HASH_MARK .*? DOUB_HASH_MARK;
 
@@ -80,9 +80,13 @@ expr : ID | index_ele | object_ini | lit
 
 object_ini : NEW ID LB expr_list RB;
 
-instance_method_invoke : ID DOT ID LB expr_list RB;
+instance_method_invoke : ID DOT ID LB para_pass_list RB;
 
-static_mehod_invoke : ID MEM_ACCESS_OP STATIC ID LB expr_list RB;
+static_mehod_invoke : ID MEM_ACCESS_OP STATIC ID LB para_pass_list RB;
+
+para_pass_list :
+               | lit_list | id_list
+               | lit_list CM id_list;
 
 att_access : instance_att_access | static_att_access;
 
@@ -130,6 +134,11 @@ int_op : ADDOP | LESS_EQUAL | GREAT_EQUAL | SUBOP | MULOP | LESS_THAN | MODOP | 
 
 float_op : ADDOP | LESS_EQUAL | GREAT_EQUAL | SUBOP | MULOP | LESS_THAN | NOT_EQUAL;
 
+lit_list :
+         | lit lit_cmlist;
+
+lit_cmlist :
+           | CM lit lit_cmlist;
 
 static_id_list :
         | STATIC? ID static_id_cmlist;
@@ -188,7 +197,7 @@ MEM_ACCESS_OP : '::';
 
 NEW : 'New';
 
-RETURN : 'return';
+RETURN : 'Return';
 
 DOUB_HASH_MARK : '##';
 
