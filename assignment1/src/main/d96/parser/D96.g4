@@ -10,7 +10,7 @@ options {
 
 
 program: class_dcl+ EOF;
-//program : method_invoke_stm+ EOF;
+//program : string EOF;
 
 comment : DOUB_HASH_MARK .*? DOUB_HASH_MARK;
 
@@ -122,7 +122,10 @@ mul_dim_arr : ARRAY LB index_arr_list RB;
 
 same_type_list : int_gen_list | bool_list | float_list | string_list;
 
-string : START_END_STRING (DOUB_QUOTE | ~'"' )*? START_END_STRING;
+string : START_END_STRING (DOUB_QUOTE | STRINGCHAR )*? START_END_STRING;
+
+STRINGCHAR: '\\'[bfrnt\'\\]
+          | ~[\\"];
 
 string_op : STR_CMP | STR_CONCAT;
 
@@ -332,8 +335,8 @@ STR_CMP : '==.';
 
 STR_CONCAT : '+.';
 
+STRINGLIT: '"' ('\\'[bfrnt\\"]|~[\r\t\n\\"])* '"';
 WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
-
+ILLEGAL_ESCAPE: '"' (('\\'[bfrnt\\"]|~[\n\\"]))* ('\\'(~[bfrnt\\])) {raise IllegalEscape(self.text)};
+UNCLOSED_STRING: '"'('\\'[bfrnt\\"]|~[\r\t\n\\"])* {raise UncloseString(self.text)};
 ERROR_CHAR: . {raise ErrorToken(self.text)};
-//UNCLOSE_STRING: . raise ;
-//ILLEGAL_ESCAPE: .;
