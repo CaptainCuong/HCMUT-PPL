@@ -149,6 +149,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#para_pass_list.
+    def visitPara_pass_list(self, ctx:D96Parser.Para_pass_listContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#att_access.
     def visitAtt_access(self, ctx:D96Parser.Att_accessContext):
         return self.visitChildren(ctx)
@@ -204,11 +209,6 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#string.
-    def visitString(self, ctx:D96Parser.StringContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by D96Parser#string_op.
     def visitString_op(self, ctx:D96Parser.String_opContext):
         return self.visitChildren(ctx)
@@ -231,6 +231,16 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#float_op.
     def visitFloat_op(self, ctx:D96Parser.Float_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#lit_list.
+    def visitLit_list(self, ctx:D96Parser.Lit_listContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#lit_cmlist.
+    def visitLit_cmlist(self, ctx:D96Parser.Lit_cmlistContext):
         return self.visitChildren(ctx)
 
 

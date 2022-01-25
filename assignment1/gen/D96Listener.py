@@ -260,6 +260,15 @@ class D96Listener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by D96Parser#para_pass_list.
+    def enterPara_pass_list(self, ctx:D96Parser.Para_pass_listContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#para_pass_list.
+    def exitPara_pass_list(self, ctx:D96Parser.Para_pass_listContext):
+        pass
+
+
     # Enter a parse tree produced by D96Parser#att_access.
     def enterAtt_access(self, ctx:D96Parser.Att_accessContext):
         pass
@@ -359,15 +368,6 @@ class D96Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by D96Parser#string.
-    def enterString(self, ctx:D96Parser.StringContext):
-        pass
-
-    # Exit a parse tree produced by D96Parser#string.
-    def exitString(self, ctx:D96Parser.StringContext):
-        pass
-
-
     # Enter a parse tree produced by D96Parser#string_op.
     def enterString_op(self, ctx:D96Parser.String_opContext):
         pass
@@ -410,6 +410,24 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#float_op.
     def exitFloat_op(self, ctx:D96Parser.Float_opContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#lit_list.
+    def enterLit_list(self, ctx:D96Parser.Lit_listContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#lit_list.
+    def exitLit_list(self, ctx:D96Parser.Lit_listContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#lit_cmlist.
+    def enterLit_cmlist(self, ctx:D96Parser.Lit_cmlistContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#lit_cmlist.
+    def exitLit_cmlist(self, ctx:D96Parser.Lit_cmlistContext):
         pass
 
 

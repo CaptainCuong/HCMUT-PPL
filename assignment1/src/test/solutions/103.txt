@@ -1,1 +1,1 @@
-aAsVN,3,<EOF>
+aAsVN3,<EOF>
