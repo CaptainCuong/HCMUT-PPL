@@ -170,7 +170,7 @@ lit : FLOATLIT | BOOLIT | STRINGLIT | int_gen;
 
 int_gen : INTLIT_16 | INTLIT_2 | INTLIT_8 | INTLIT_10;
 
-data_type : INT_TYPE | FLOAT_TYPE | BOOL_TYPE;
+data_type : INT_TYPE | FLOAT_TYPE | BOOL_TYPE | array_type;
 
 size : int_gen;
 
@@ -182,8 +182,8 @@ binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
           | GREAT_THAN | SUBOP | MULOP | LESS_THAN | MODOP
           |DIVOP | NOT_EQUAL | EQUAL | AND | OR | STR_CMP | STR_CONCAT;
 
-STRINGLIT : '""'
-          | '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"'] )'"';
+STRINGLIT : '""' // Case 1: There is no character
+          | '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"'] )'"'; // Case 2: There is at least 1 character -> The single quote can not stand at the end of string
 
 MEM_ACCESS_OP : '::';
 
@@ -313,9 +313,9 @@ STR_CMP : '==.';
 
 STR_CONCAT : '+.';
 
-COMMENT : '##' .*? '##' ->skip;
+COMMENT : '##' .*? '##' ->skip ;
 
 WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
-ILLEGAL_ESCAPE: '"' (('\\'[bfrnt\\"]|~[\n\\"]))* ('\\'(~[bfrnt\\])) {raise IllegalEscape(self.text)};
-UNCLOSED_STRING: '"'('\\'[bfrnt\\"]|~[\r\t\n\\"])* {raise UncloseString(self.text)};
+ILLEGAL_ESCAPE: ( '"' ('\\'[bfrnt\\'] | ~[\n\r\\"])* ('\\'(~[bfrnt'\\]))) {self.text = self.text.replace('"',''); raise IllegalEscape(self.text)};
+UNCLOSED_STRING: ( '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ) {self.text = self.text.replace('"',''); raise UncloseString(self.text)};
 ERROR_CHAR: . {raise ErrorToken(self.text)};
