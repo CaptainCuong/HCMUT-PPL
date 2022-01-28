@@ -1,1 +1,7 @@
-aAsVN3
+
+    Class Shape {
+        foo(){
+            a();
+        } 
+    }
+    

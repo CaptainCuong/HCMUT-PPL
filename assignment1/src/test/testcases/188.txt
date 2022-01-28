@@ -1,1 +1,1 @@
-lsh = a[1];
+True && True False || False

@@ -1,1 +1,1 @@
-"He asked me: '"Where is John?'"",<EOF>
+Error on line 4 col 10: =

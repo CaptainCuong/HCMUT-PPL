@@ -17,15 +17,6 @@ class D96Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by D96Parser#comment.
-    def enterComment(self, ctx:D96Parser.CommentContext):
-        pass
-
-    # Exit a parse tree produced by D96Parser#comment.
-    def exitComment(self, ctx:D96Parser.CommentContext):
-        pass
-
-
     # Enter a parse tree produced by D96Parser#class_dcl.
     def enterClass_dcl(self, ctx:D96Parser.Class_dclContext):
         pass
@@ -41,6 +32,15 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#class_body.
     def exitClass_body(self, ctx:D96Parser.Class_bodyContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#expr_pro.
+    def enterExpr_pro(self, ctx:D96Parser.Expr_proContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#expr_pro.
+    def exitExpr_pro(self, ctx:D96Parser.Expr_proContext):
         pass
 
 
@@ -206,21 +206,21 @@ class D96Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by D96Parser#expr_list.
-    def enterExpr_list(self, ctx:D96Parser.Expr_listContext):
+    # Enter a parse tree produced by D96Parser#expr_pro_list.
+    def enterExpr_pro_list(self, ctx:D96Parser.Expr_pro_listContext):
         pass
 
-    # Exit a parse tree produced by D96Parser#expr_list.
-    def exitExpr_list(self, ctx:D96Parser.Expr_listContext):
+    # Exit a parse tree produced by D96Parser#expr_pro_list.
+    def exitExpr_pro_list(self, ctx:D96Parser.Expr_pro_listContext):
         pass
 
 
-    # Enter a parse tree produced by D96Parser#expr_cmlist.
-    def enterExpr_cmlist(self, ctx:D96Parser.Expr_cmlistContext):
+    # Enter a parse tree produced by D96Parser#expr_pro_cmlist.
+    def enterExpr_pro_cmlist(self, ctx:D96Parser.Expr_pro_cmlistContext):
         pass
 
-    # Exit a parse tree produced by D96Parser#expr_cmlist.
-    def exitExpr_cmlist(self, ctx:D96Parser.Expr_cmlistContext):
+    # Exit a parse tree produced by D96Parser#expr_pro_cmlist.
+    def exitExpr_pro_cmlist(self, ctx:D96Parser.Expr_pro_cmlistContext):
         pass
 
 
@@ -230,6 +230,15 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#expr.
     def exitExpr(self, ctx:D96Parser.ExprContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#expr_lit.
+    def enterExpr_lit(self, ctx:D96Parser.Expr_litContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#expr_lit.
+    def exitExpr_lit(self, ctx:D96Parser.Expr_litContext):
         pass
 
 
@@ -293,6 +302,15 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#static_att_access.
     def exitStatic_att_access(self, ctx:D96Parser.Static_att_accessContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#index_ele_pro.
+    def enterIndex_ele_pro(self, ctx:D96Parser.Index_ele_proContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#index_ele_pro.
+    def exitIndex_ele_pro(self, ctx:D96Parser.Index_ele_proContext):
         pass
 
 
@@ -428,24 +446,6 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#lit_cmlist.
     def exitLit_cmlist(self, ctx:D96Parser.Lit_cmlistContext):
-        pass
-
-
-    # Enter a parse tree produced by D96Parser#static_id_list.
-    def enterStatic_id_list(self, ctx:D96Parser.Static_id_listContext):
-        pass
-
-    # Exit a parse tree produced by D96Parser#static_id_list.
-    def exitStatic_id_list(self, ctx:D96Parser.Static_id_listContext):
-        pass
-
-
-    # Enter a parse tree produced by D96Parser#static_id_cmlist.
-    def enterStatic_id_cmlist(self, ctx:D96Parser.Static_id_cmlistContext):
-        pass
-
-    # Exit a parse tree produced by D96Parser#static_id_cmlist.
-    def exitStatic_id_cmlist(self, ctx:D96Parser.Static_id_cmlistContext):
         pass
 
 
@@ -602,12 +602,12 @@ class D96Listener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by D96Parser#floatlit.
-    def enterFloatlit(self, ctx:D96Parser.FloatlitContext):
+    # Enter a parse tree produced by D96Parser#zero.
+    def enterZero(self, ctx:D96Parser.ZeroContext):
         pass
 
-    # Exit a parse tree produced by D96Parser#floatlit.
-    def exitFloatlit(self, ctx:D96Parser.FloatlitContext):
+    # Exit a parse tree produced by D96Parser#zero.
+    def exitZero(self, ctx:D96Parser.ZeroContext):
         pass
 
 

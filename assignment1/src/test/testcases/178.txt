@@ -1,1 +1,1 @@
-"a" +. "bc"
+ 0xABCD_E_FG 

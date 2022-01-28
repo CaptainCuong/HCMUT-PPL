@@ -1,1 +1,1 @@
-"\f\b\r\r"
+Var a:Array[Int,5];

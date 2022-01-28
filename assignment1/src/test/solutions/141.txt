@@ -1,1 +1,1 @@
-"\b\n\t",<EOF>
+foo,(,a,,,b,:,Int,;,c,:,String,),{,},<EOF>

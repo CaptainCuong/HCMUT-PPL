@@ -1,1 +1,1 @@
-<EOF>
+0xABCDEF,GHI,<EOF>

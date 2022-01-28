@@ -1,1 +1,1 @@
-x = New T();
+abc"avc \m abv "abc

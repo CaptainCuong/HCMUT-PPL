@@ -1,1 +1,1 @@
-std,.,getID,(,name,,,age,),;,<EOF>
+123,<EOF>

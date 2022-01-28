@@ -1,1 +1,1 @@
-Illegal Escape In String: Hello everyone \h
+Var,a,:,Int,=,1,+,1,;,<EOF>

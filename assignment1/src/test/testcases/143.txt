@@ -1,1 +1,1 @@
-"\mn"
+Class Shape{}

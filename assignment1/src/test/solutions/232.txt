@@ -1,1 +1,1 @@
-0x1A,<EOF>
+Error on line 2 col 17: :

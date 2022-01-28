@@ -1,1 +1,9 @@
-000X00b00
+
+    Class Shape {
+        Constructor(width, height : Int; name:String){
+            Self.Area=Self.width*Self.height;
+            Self.name="shape"+.name;
+        } 
+        Destructor(){} 
+    }
+    

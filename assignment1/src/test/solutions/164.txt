@@ -1,1 +1,1 @@
-x,=,Array,(,1,,,2,),<EOF>
+abc,Error Token #

@@ -1,1 +1,1 @@
-"\f\b\r\r",<EOF>
+Var,a,:,Array,[,Int,,,5,],;,<EOF>

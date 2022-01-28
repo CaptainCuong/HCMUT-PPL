@@ -1,1 +1,9 @@
-True False
+
+    Class Shape {
+        foo(){
+            a::$b=2;
+            a::$e();
+            a::$c::$d=2;
+        } 
+    }
+    

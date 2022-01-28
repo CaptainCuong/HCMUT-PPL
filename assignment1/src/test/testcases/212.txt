@@ -1,1 +1,20 @@
-0xFF0001_2
+
+    Class Shape {
+        Val $numOfShape: Int = 0;
+        Val immutableAttribute: Int = 0;
+        Var length, width: Int;
+        $getNumOfShape() {
+            Return $numOfShape;
+        }
+    }
+    Class Rectangle: Shape {
+        getArea() {
+            Return self.length * self.width;
+        }
+    }
+    Class Program {
+        main() {
+            Out.printInt(Shape::$numOfShape);
+        }
+    }
+    

@@ -1,1 +1,1 @@
-"a",+.,"bc",<EOF>
+0xABCDEF,G,<EOF>

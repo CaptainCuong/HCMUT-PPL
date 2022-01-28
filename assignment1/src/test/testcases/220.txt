@@ -1,1 +1,9 @@
-1234.2
+
+    Class Shape {
+        foo(){
+            Foreach (i In (1+2) .. (100*2-3) By (16-14)) {
+                Out.printInt(i);
+            }
+        } 
+    }
+    

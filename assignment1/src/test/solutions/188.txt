@@ -1,1 +1,1 @@
-lsh,=,a,[,1,],;,<EOF>
+True,&&,True,False,||,False,<EOF>

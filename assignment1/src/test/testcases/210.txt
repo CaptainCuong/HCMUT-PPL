@@ -1,1 +1,7 @@
-0b12
+
+    Class Shape {
+        foo(){
+            Var a: Boolean = !!True;
+        }
+    }
+    

@@ -1,1 +1,3 @@
-0x1A
+
+    Class Shape:a:b{}
+    

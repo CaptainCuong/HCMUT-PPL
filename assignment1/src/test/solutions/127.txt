@@ -1,1 +1,1 @@
-TrueFalse_,<EOF>
+0X12ABA,abc,<EOF>

@@ -1,1 +1,7 @@
-+!||.==.
+
+    Class Shape {
+        foo(){
+            a = (b < c)  == True;
+        } 
+    }
+    

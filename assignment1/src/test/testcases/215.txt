@@ -1,1 +1,7 @@
-aCBbdc
+
+    Class Shape {
+        foo(){
+            a=New X().Y();
+        } 
+    }
+    

@@ -24,6 +24,11 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by D96Parser#expr_pro.
+    def visitExpr_pro(self, ctx:D96Parser.Expr_proContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by D96Parser#att_dcl.
     def visitAtt_dcl(self, ctx:D96Parser.Att_dclContext):
         return self.visitChildren(ctx)
@@ -114,18 +119,23 @@ class D96Visitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#expr_list.
-    def visitExpr_list(self, ctx:D96Parser.Expr_listContext):
+    # Visit a parse tree produced by D96Parser#expr_pro_list.
+    def visitExpr_pro_list(self, ctx:D96Parser.Expr_pro_listContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by D96Parser#expr_cmlist.
-    def visitExpr_cmlist(self, ctx:D96Parser.Expr_cmlistContext):
+    # Visit a parse tree produced by D96Parser#expr_pro_cmlist.
+    def visitExpr_pro_cmlist(self, ctx:D96Parser.Expr_pro_cmlistContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by D96Parser#expr.
     def visitExpr(self, ctx:D96Parser.ExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#expr_lit.
+    def visitExpr_lit(self, ctx:D96Parser.Expr_litContext):
         return self.visitChildren(ctx)
 
 
@@ -161,6 +171,11 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#static_att_access.
     def visitStatic_att_access(self, ctx:D96Parser.Static_att_accessContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#index_ele_pro.
+    def visitIndex_ele_pro(self, ctx:D96Parser.Index_ele_proContext):
         return self.visitChildren(ctx)
 
 
@@ -236,16 +251,6 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#lit_cmlist.
     def visitLit_cmlist(self, ctx:D96Parser.Lit_cmlistContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#static_id_list.
-    def visitStatic_id_list(self, ctx:D96Parser.Static_id_listContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by D96Parser#static_id_cmlist.
-    def visitStatic_id_cmlist(self, ctx:D96Parser.Static_id_cmlistContext):
         return self.visitChildren(ctx)
 
 
@@ -331,6 +336,11 @@ class D96Visitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by D96Parser#binary_op.
     def visitBinary_op(self, ctx:D96Parser.Binary_opContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by D96Parser#zero.
+    def visitZero(self, ctx:D96Parser.ZeroContext):
         return self.visitChildren(ctx)
 
 

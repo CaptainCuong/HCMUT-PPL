@@ -1,1 +1,1 @@
-A[0x9F][032]
+ "This is a string containing tab \t" 

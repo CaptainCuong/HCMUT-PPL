@@ -1,1 +1,7 @@
-Array(Array(1),Array(Array(3)))
+
+    Class Shape {
+        foo(){
+            a[b[1]][c][foo()] = 1;
+        }
+        Var e,f : Int = 1 + 1, 1 - 2;
+    }

@@ -1,1 +1,1 @@
-True,False,<EOF>
+0X12ABA,abc123,<EOF>
