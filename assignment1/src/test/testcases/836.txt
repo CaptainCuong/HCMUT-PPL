@@ -1,0 +1,1 @@
+Class n:____{Val $_U,$01:Boolean ;}Class s{$6_(){_::$8();}Val a:Array [Boolean ,0xF];Var RT,$_:Array [Array [Array [Array [Array [Int ,0X1D],0b10],0B1],79],79];}

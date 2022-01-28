@@ -1,0 +1,1 @@
+Class G_{Var $3:Array [Array [Array [Array [Array [Array [Float ,0144],0b11_00_1_10],0B1010000],0B10],04],0144];}Class _:_4_{}

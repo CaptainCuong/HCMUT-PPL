@@ -1,0 +1,1 @@
+Class P3{Constructor (S:Array [Boolean ,0112];_M:Boolean ;_:Float ;v,N:Boolean ;_,_,M6_,_O:_;p_:Array [Array [Int ,0112],100]){} }

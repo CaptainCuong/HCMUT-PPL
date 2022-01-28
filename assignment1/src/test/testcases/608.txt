@@ -1,0 +1,1 @@
+Class pt{Var w:Array [Array [Array [Array [Float ,034],0xA],0X6E_2],18];Val $A:Array [Array [Int ,18],0x8];Var $_65:Array [Array [Array [Float ,0xA],0b10],0x3E];Var W5_,$_d,$_f:Array [String ,8];Destructor (){} }

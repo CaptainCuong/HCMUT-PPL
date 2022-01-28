@@ -1,0 +1,1 @@
+Class _S:r{h00(_,_:Array [Array [Boolean ,1],0B110];_,_N__A,U:Array [Array [Array [Float ,2],0X5D],0x2A];_,S,O:Array [String ,05];g:Array [Array [Array [Array [String ,0b1],4],05],0B111110]){} }

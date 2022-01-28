@@ -1,0 +1,1 @@
+Class __:R{Constructor (){_::$___();}Var $f_,f___,$_,__,_,$O__:Array [String ,0X11];Val _M:Int ;}Class _O:v{}

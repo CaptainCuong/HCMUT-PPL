@@ -1,0 +1,1 @@
+Class D{Constructor (_9:Array [Array [Array [Array [Array [Array [Array [Boolean ,5],6],5],0b1011000],064],5],024];_:Array [Boolean ,0b1011000]){Return ;} }

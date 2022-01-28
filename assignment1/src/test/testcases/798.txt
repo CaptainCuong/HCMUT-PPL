@@ -1,0 +1,1 @@
+Class __:___J_7{Var _:Array [Array [Array [Array [Array [Array [String ,0x3C],05],0b100100],49],49],0b1_0];Destructor (){}Val a_:Int ;Constructor (){Break ;} }

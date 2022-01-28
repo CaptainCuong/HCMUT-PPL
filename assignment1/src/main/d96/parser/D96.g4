@@ -10,7 +10,7 @@ options {
 
 
 program: class_dcl+ EOF;
-//program : stm EOF;
+//program : expr_lit EOF;
 
 class_dcl : CLASS ID (CL id_list)? class_body;
 
@@ -79,11 +79,15 @@ expr : expr_lit
      | LB expr RB
      ;
 
-expr_lit : ID | object_ini | lit | index_arr | mul_dim_arr
+expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr
+         | expr_lit LS (expr_lit | int_gen) RS
          | expr_lit DOT ID LB para_pass_list RB
          | expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB
          | expr_lit DOT expr_lit
          | expr_lit MEM_ACCESS_OP DOLLAR_ID
+         | unary_op expr_lit
+         | expr_lit binary_op expr_lit
+         | LB expr_lit RB
          ;
 
 //string_op : STR_CMP | STR_CONCAT;
@@ -218,6 +222,7 @@ binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
 STRINGLIT : ('""' // Case 1: There is no character
           | '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"'] )'"') {self.text = self.text[1:-1]}; // Case 2: There is at least 1 character -> The single quote can not stand at the end of string
           
+NULL : 'Null';
 
 MEM_ACCESS_OP : '::';
 

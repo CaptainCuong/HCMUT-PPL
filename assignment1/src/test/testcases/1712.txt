@@ -1,0 +1,1 @@
+Class q3:_{_(X,TrP:Array [Array [Array [Array [Array [Int ,0b1],99_5],7],0X1],0130]){}Var h:Array [Array [Array [Array [Array [String ,0B1010101],01],0b1_1_0],0B1],02_4];}

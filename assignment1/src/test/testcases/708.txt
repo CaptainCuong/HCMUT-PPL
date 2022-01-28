@@ -1,0 +1,1 @@
+Class y9__769:_1{Destructor (){}Var $_1y,$I,$__:Array [Int ,8];}Class _:B{Var _:String ;}Class C{Destructor (){} }

@@ -1,0 +1,1 @@
+Class __{Var Q,$X,$27L,_KP:Float ;Constructor (N:String ;_5:Array [Array [Array [Array [Int ,0b101000],07],0X4],67]){Break ;Return ;} }

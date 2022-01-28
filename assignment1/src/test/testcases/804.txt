@@ -1,0 +1,1 @@
+Class v_{Val $H,_2:Array [Int ,5];Constructor (W_,L_,U:R){} }Class _{Var $5:Array [Array [Array [Float ,0B1],01],0X1C];}Class _{}

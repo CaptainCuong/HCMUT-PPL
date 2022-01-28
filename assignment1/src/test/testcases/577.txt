@@ -1,0 +1,1 @@
+Class __{Constructor (lR,K:Array [Array [Boolean ,0X13],0B1_1];_:Array [Array [Float ,5],0X13];O,B1:Boolean ){} }

@@ -1,0 +1,1 @@
+Class k5{Destructor (){Break ;}Destructor (){Val N,_,_,_b:h;Var L:Boolean ;}Constructor (C:h_ERm379_0m9;D:_4){} }
