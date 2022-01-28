@@ -1,1 +1,1 @@
-Var a:Array[Int,5];
+Class _:_7_{Constructor (__,p,___,_:Array [Boolean ,02];P_:__){}Constructor (){}Var $_,P4,_6yK_:OA;}Class _{}Class y{Val $6:Array [String ,02];Destructor (){} }

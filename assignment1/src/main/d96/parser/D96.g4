@@ -9,8 +9,8 @@ options {
 }
 
 
-//program: class_dcl+ EOF;
-program : expr_lit EOF;
+program: class_dcl+ EOF;
+//program : expr_lit EOF;
 
 class_dcl : CLASS ID (CL id_list)? class_body;
 

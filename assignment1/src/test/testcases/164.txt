@@ -1,1 +1,1 @@
-##Hello#another#world\h\n##abc#
+Class y:H{Val _:Boolean ;}Class _g:_{Destructor (){ {}b6::$Z();}Constructor (_5_j__,__,g:t;g:Array [Array [String ,0B11111_0_00],0b11101];_:Q){} }
