@@ -1,1 +1,1 @@
-Program(List(FuncDecl(Id(main),List(),IntType,Block(List(),List(CallExpr(Id(putIntLn),List(CallExpr(Id(getInt),List(IntLiteral(4))))))))))
+Class n8_{}Class QI674:X9{}Class _{Val $5_,_,$p_,z,_H_,__,$1:Array [Array [Array [Array [Boolean ,06_32],057],0b1_10],057];}Class K:_R_a63{}

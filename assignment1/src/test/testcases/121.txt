@@ -1,1 +1,1 @@
- "This is a string containing tab \t" 
+Class _{}Class r:D{Constructor (A5:String ;_:Array [Array [Float ,0B10110],0b10_1];Z:Float ;i_1:Boolean ;G,K,D_:Int ){}__(){} }

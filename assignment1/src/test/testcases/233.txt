@@ -1,9 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a::$b=2;
-            a::$e();
-            a::$c::$d=2;
-        } 
-    }
-    
+Class __{Val _:Array [Array [Array [Array [Array [Array [Int ,0XE],18],0b1],0412_0],9],22];}Class b3:_d{}Class g{}Class __35{}Class T6{}Class Q_:l3_8_iq{}Class ___:_{}

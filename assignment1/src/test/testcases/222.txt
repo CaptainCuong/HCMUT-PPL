@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            Foreach (i In a[1] .. foo() By _123()) {}
-        } 
-    }
-    
+Class _:_WM6j{Constructor (_,IC:Boolean ;__6:String ;l:Array [Float ,0xC];_iFv_8__4a7,____:Array [Boolean ,0B10]){} }

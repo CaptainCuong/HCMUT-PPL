@@ -10,7 +10,7 @@ options {
 
 
 program: class_dcl+ EOF;
-//program : asm_stm EOF;
+//program : stm EOF;
 
 class_dcl : CLASS ID (CL id_list)? class_body;
 
@@ -24,7 +24,9 @@ att_dcl : VAL_VAR id_list CL data_type SEMI // not assigned
 att_dcl_list : CL data_type ASSIGN_OP
              | CM (ID | DOLLAR_ID) att_dcl_list expr_pro CM;
 
-method_dcl : (DESTRUCTOR | CONSTRUCTOR | ID | DOLLAR_ID) LB para_dcl_list RB block_stm;
+method_dcl : (DESTRUCTOR | CONSTRUCTOR | ID | DOLLAR_ID) LB para_dcl_list RB method_block;
+
+method_block : LP (stm | block_stm)* RP;
 
 //static_method_dcl : (DESTRUCTOR | CONSTRUCTOR | ID | DOLLAR_ID) LB para_dcl_list RB static_block_stm;
 
@@ -37,7 +39,8 @@ para_dcl_smcllist :
 para_dcl : id_list CL data_type;
 
 stm : (asm_stm | var_dcl | break_stm | continue_stm | return_stm | method_invoke_stm) SEMI
-    | if_stm | for_in_stm;
+    | if_stm | for_in_stm
+    | block_stm;
 
 for_in_stm : FOREACH LB ID IN expr_pro RANGE expr_pro (BY expr_pro)? RB block_stm;
 
@@ -52,13 +55,13 @@ continue_stm : CONTINUE;
 
 break_stm : BREAK;
 
-asm_stm : (ID | att_access | index_ele | index_ele_pro | DOLLAR_ID) ASSIGN_OP expr_pro;
+asm_stm : (ID | att_access | index_ele | index_ele_pro) ASSIGN_OP expr_pro;
 
-return_stm : RETURN expr_pro;
+return_stm : RETURN (expr_pro | );
 
 method_invoke_stm : instance_method_invoke | static_mehod_invoke;
 
-var_dcl : VAL_VAR id_list CL data_type // not assigned
+var_dcl : VAL_VAR non_static_id_list CL data_type // not assigned
         | VAL_VAR ID var_dcl_list expr_pro; // assigned
 
 var_dcl_list : CL data_type ASSIGN_OP
@@ -70,16 +73,18 @@ expr_pro_list :
 expr_pro_cmlist : | CM expr_pro expr_pro_cmlist;
 
 expr : expr_lit
+//     | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access
      | expr binary_op expr
-//     | unary_op LB expr RB
-//     | NEGATE expr
-//     | SUBOP expr_lit
      | unary_op expr
      | LB expr RB
      ;
 
 expr_lit : ID | object_ini | lit | index_arr | mul_dim_arr
-     | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access;
+         | expr_lit DOT ID LB para_pass_list RB
+         | expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB
+         | expr_lit DOT expr_lit
+         | expr_lit MEM_ACCESS_OP DOLLAR_ID
+         ;
 
 //string_op : STR_CMP | STR_CONCAT;
 //
@@ -101,9 +106,9 @@ expr_lit : ID | object_ini | lit | index_arr | mul_dim_arr
 
 object_ini : NEW ID LB expr_pro_list RB;
 
-instance_method_invoke : (ID | object_ini) DOT ID LB para_pass_list RB;
+instance_method_invoke : expr_lit DOT ID LB para_pass_list RB;
 
-static_mehod_invoke : ID MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB;
+static_mehod_invoke : expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB;
 
 para_pass_list : expr_pro_list;
 //               | lit_list | id_list
@@ -111,9 +116,12 @@ para_pass_list : expr_pro_list;
 
 att_access : instance_att_access | static_att_access;
 
-instance_att_access : ID (DOT ID)+;
+//expr_lit : ID | object_ini | lit | index_arr | mul_dim_arr
+//     | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access;
 
-static_att_access : ID MEM_ACCESS_OP DOLLAR_ID;
+instance_att_access : expr_lit (DOT expr_lit | MEM_ACCESS_OP DOLLAR_ID)* DOT ID;
+
+static_att_access : expr_lit (DOT expr_lit | MEM_ACCESS_OP DOLLAR_ID)* MEM_ACCESS_OP DOLLAR_ID;
 
 index_ele_pro : ID (LS expr_pro RS)+ ;
 
@@ -154,11 +162,11 @@ lit_list :
 lit_cmlist :
            | CM lit lit_cmlist;
 
-//static_id_list :
-//        | DOLLAR_ID static_id_cmlist;
+non_static_id_list :
+        | ID non_static_id_cmlist;
 
-//static_id_cmlist :
-//                 | CM DOLLAR_ID static_id_cmlist;
+non_static_id_cmlist :
+                 | CM ID non_static_id_cmlist;
 
 id_list :
         | (ID | DOLLAR_ID)  id_cmlist;
@@ -194,7 +202,7 @@ lit : FLOATLIT | BOOLIT | STRINGLIT | int_gen;
 
 int_gen : INTLIT_16 | INTLIT_2 | INTLIT_8 | INTLIT_10 | ZERO_10;
 
-data_type : INT_TYPE | FLOAT_TYPE | BOOL_TYPE | STRING_TYPE | array_type;
+data_type : INT_TYPE | FLOAT_TYPE | BOOL_TYPE | STRING_TYPE | array_type | ID;
 
 size : INTLIT_16 | INTLIT_2 | INTLIT_8 | INTLIT_10;
 
@@ -204,7 +212,8 @@ unary_op : SUBOP | NEGATE;
 
 binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
           | GREAT_THAN | SUBOP | MULOP | LESS_THAN | MODOP
-          |DIVOP | NOT_EQUAL | EQUAL | AND | OR | STR_CMP | STR_CONCAT;
+          |DIVOP | NOT_EQUAL | EQUAL | AND | OR | STR_CMP | STR_CONCAT
+          | DOT | MEM_ACCESS_OP;
 
 STRINGLIT : ('""' // Case 1: There is no character
           | '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"'] )'"') {self.text = self.text[1:-1]}; // Case 2: There is at least 1 character -> The single quote can not stand at the end of string
@@ -354,6 +363,6 @@ STR_CONCAT : '+.';
 COMMENT : '##' .*? '##' ->skip ;
 
 WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
-ILLEGAL_ESCAPE: ( '"' ('\\'[bfrnt\\'] | ~[\n\r\\"])* ('\\'(~[bfrnt'\\]))) {self.text = self.text.replace('"',''); raise IllegalEscape(self.text)};
-UNCLOSED_STRING: ( '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ) {self.text = self.text.replace('"',''); raise UncloseString(self.text)};
+ILLEGAL_ESCAPE: ( '"' ('\\'[bfrnt\\'] | ~[\n\r\\"])* ('\\'(~[bfrnt'\\]))) {self.text = self.text[1:]; raise IllegalEscape(self.text)};
+UNCLOSED_STRING: ( '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ) {self.text = self.text[1:]; raise UncloseString(self.text)};
 ERROR_CHAR: . {raise ErrorToken(self.text)};

@@ -1,11 +1,1 @@
-
-Class Shape2 {
-    $getNumOfShape() {
-        If (a == (1+1) ){
-            Var b,c:Boolean = True, False;
-        }
-        Foreach (i In 1 .. 100 By 2) {
-             Var a:Boolean = True;
-        }
-    }
-}
+Class i{Var $_:Array [Array [Array [Array [Int ,0104],0b1_1],2_4],66];}Class q37_3_wCOZ:_{_9_B(___,__:Boolean ){ {Continue ;} }Constructor (){}Destructor (){} }

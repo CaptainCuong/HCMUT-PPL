@@ -1,10 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = !!!!!!!!!!!!True;
-            b = ------------5;
-            c=d.d.d.d.d.d.d.d;
-            e=f[1][1][1][1];
-        } 
-    }
-    
+Class o_W{}Class __9:m_{Destructor (){}$2(_1:Array [Array [Array [Float ,0B10111],22],0X24]){}Destructor (){Var _Z7,_:_;}$_(){} }Class _{}

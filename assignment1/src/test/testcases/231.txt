@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = "a"==."b"==."b";
-        } 
-    }
-    
+Class X:v66{}Class _:__D1fT{Constructor (X:Array [String ,021];_:_2E5){ {} }Constructor (bD_5_,_:Int ;W,H:Float ;__,__:Float ){Qo::$2soTU();} }

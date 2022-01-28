@@ -1,9 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        a=1;
-                    }
-                    Foreach (x In 1 .. 100 by 2){}
-                }
-
-            
+Class M{}Class p5_:_Z_1{Constructor (S:Array [Boolean ,0X2]){} }Class n_8p_{}Class x_2:q{Constructor (_:Array [Array [String ,035],0x21];_E127,r,_QU:_;_,a,______,_36:Array [Boolean ,78];_,_a:Int ;J6,h:B_4){} }

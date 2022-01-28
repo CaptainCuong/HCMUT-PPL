@@ -1,9 +1,1 @@
-
-    Class Shape {
-        Constructor(width, height : Int; name:String){
-            Self.Area=Self.width*Self.height;
-            Self.name="shape"+.name;
-        } 
-        Destructor(){} 
-    }
-    
+Class _3_:ze{}Class _{Destructor (){} }Class Q{}Class _{}Class _Jm44A:_2d{}Class __:hm{Destructor (){Continue ;}_(n:Int ;_:Array [Int ,75];__,D1____,_v,D:String ){}Var L,CH1ysE:Int ;Constructor (_qIz2Lz,Zv:Boolean ;_,_:Boolean ;f:Array [Float ,75]){Return ;} }

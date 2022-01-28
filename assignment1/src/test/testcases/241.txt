@@ -1,9 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        a = New X().Y();
-                        Var a: Array[Int, 0];
-                    }
-                }
-
-            
+Class _:n{$9(_:Array [Array [Array [Array [Array [Array [Array [Array [Boolean ,0X32],0x42],0X8],85],0xE],07],07],0X1F];W,r:_){} }Class rG_:_{}Class T0__{$_(_:Int ;_:Array [Boolean ,0x42]){} }Class b:__P2_rmqd{}

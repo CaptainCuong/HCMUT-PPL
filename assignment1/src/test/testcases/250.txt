@@ -1,8 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        Var a: Array[Int, b::$c.foo()];
-                    }
-                }
-
-            
+Class _V4OR6{Constructor (B:Array [Array [Array [Array [Boolean ,07],1],0b1],0B101111]){Return ;} }Class _:_{}Class _l3{Constructor (){Continue ;} }Class u2{Var L2,$kY5:_J;}

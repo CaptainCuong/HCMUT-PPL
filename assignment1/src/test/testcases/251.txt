@@ -1,6 +1,1 @@
-
-                Class Shape{
-                    Var a,b:Int=5,6,7;
-                }
-
-            
+Class k:dG3{Constructor (){Break ;} }Class _M9:z{Var $0:Array [Array [Array [Int ,0b1],076],3];Val $8:Array [Int ,0b10000];}

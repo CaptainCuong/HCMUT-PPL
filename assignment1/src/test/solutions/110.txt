@@ -1,1 +1,1 @@
-abc\' def,<EOF>
+Error on line 1 col 94: &&

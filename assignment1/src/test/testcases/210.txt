@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            Var a: Boolean = !!True;
-        }
-    }
-    
+Class _2:_97{}Class lG{Val _:Array [Array [Array [Array [Array [Array [Int ,0102],0x9],0xA],0756],0102],01_7];}Class m:jPW{}

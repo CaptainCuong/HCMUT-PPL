@@ -1,14 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        Var a: Array[Int, 01];
-                        Var a: Array[Int, 0x1];
-                        Var a: Array[Int, 0X1];
-                        Var a: Array[Int, 0b1];
-                        Var a: Array[Int, 0B1];
-                        Var a: Array[Int, 1];
-                        Var a: Array[Int, 00];
-                    }
-                }
-
-            
+Class _:_O{Var $7:Array [Array [Array [String ,04],042],0x32];}Class _{$C6R(){Return ;} }Class __7w:_{$0(){}Val $Z,$_0,$Z_h9:Float ;}Class fD9{Destructor (){Val _9,D:Float ;}Var _p,h:_;}

@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            Var a();
-        } 
-    }
-    
+Class _:B{Destructor (){_::$A._._4__();}Val e_624:Array [Array [Array [Array [Array [Array [Array [Array [Array [Int ,0134],0B1001111],0134],0b10001],0X61],06],87],0B1001111],0x3];Val Y:String ;Constructor (){} }Class I6On:uN_8{Destructor (){} }

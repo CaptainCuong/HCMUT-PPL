@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = (b==c) == True;
-        } 
-    }
-    
+Class e:I{Destructor (){}$Rb2(){Var H,g:Int ;Break ;} }Class u:k2012{Var $6,_,$_6:Array [Array [Boolean ,0XE],0x46];}

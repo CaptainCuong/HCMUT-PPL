@@ -1,3 +1,1 @@
-int main () {
-            putIntLn(4);
-        }
+Class __:_S2h{Var $_c17A_,G:Array [Int ,0X6];Constructor (t,ee,RE,_,B,_____,j:_){Var zy3,_,_jW_,bs,j:String ;} }

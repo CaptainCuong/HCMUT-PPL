@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a=b.c.d.e;
-        } 
-    }
-    
+Class GJ_fk6{}Class _Z:_3_Z{I(pT97,l,P:Array [Array [Array [Array [Array [Boolean ,0b1],83],83],54],0X3]){Val _:Array [Boolean ,83];Return ;} }

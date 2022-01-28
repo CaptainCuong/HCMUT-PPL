@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a[b[1]][c][foo()] = 1;
-        }
-        Var e,f : Int = 1 + 1, 1 - 2;
-    }
+Class _:_{Destructor (){} }Class _dH{Constructor (_:String ){} }Class g{Destructor (){ {}__::$_.__9w();} }Class _:_{Var _,__,g,$5,fI_,_:Array [Array [Array [Array [String ,027],0x13],23],0x13];}

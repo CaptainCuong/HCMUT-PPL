@@ -1,5 +1,1 @@
-
-    Class Shape {
-        sum(a,b:Int; c,d:Float){}
-    }
-    
+Class a:I{}Class _:X{Destructor (){Break ;}Constructor (){}$_(){Continue ;} }Class _:r{}Class M1{Val WM:Array [Array [Array [Int ,24],06_6],0x7];}

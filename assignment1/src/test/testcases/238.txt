@@ -1,8 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a=-1+1;
-            b=1+-1--1+-1---1;
-        } 
-    }
-    
+Class _{Val _1:Int ;$__N(L:Array [Array [String ,820_0_1_6],0X4F];K,_:String ;_kd_SS,_f_,__,q6a,k,__,B_,_:Array [Boolean ,0b100111]){Return ;} }

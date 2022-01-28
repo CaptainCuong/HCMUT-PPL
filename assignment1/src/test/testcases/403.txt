@@ -1,1 +1,1 @@
-Program(List(FuncDecl(Id(main),List(),IntType,Block(List(),List(CallExpr(Id(foo),List()))))))
+Class ur:dX{}Class _:_{Constructor (){Return ;0B10._.U_()._h_9__s_();BP93::$3_.a();Continue ;Continue ;} }Class r_4_{}Class F_2{}

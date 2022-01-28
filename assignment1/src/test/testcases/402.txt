@@ -1,3 +1,1 @@
-int main () {
-            putIntLn(getInt(4));
-        }
+Class _:_{}Class m:_{Destructor (){Break ;Val __hL:__;Continue ;Continue ;} }Class n6:_{}Class _{Destructor (){} }

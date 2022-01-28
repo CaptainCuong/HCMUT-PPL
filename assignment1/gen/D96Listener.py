@@ -71,6 +71,15 @@ class D96Listener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by D96Parser#method_block.
+    def enterMethod_block(self, ctx:D96Parser.Method_blockContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#method_block.
+    def exitMethod_block(self, ctx:D96Parser.Method_blockContext):
+        pass
+
+
     # Enter a parse tree produced by D96Parser#para_dcl_list.
     def enterPara_dcl_list(self, ctx:D96Parser.Para_dcl_listContext):
         pass
@@ -446,6 +455,24 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#lit_cmlist.
     def exitLit_cmlist(self, ctx:D96Parser.Lit_cmlistContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#non_static_id_list.
+    def enterNon_static_id_list(self, ctx:D96Parser.Non_static_id_listContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#non_static_id_list.
+    def exitNon_static_id_list(self, ctx:D96Parser.Non_static_id_listContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#non_static_id_cmlist.
+    def enterNon_static_id_cmlist(self, ctx:D96Parser.Non_static_id_cmlistContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#non_static_id_cmlist.
+    def exitNon_static_id_cmlist(self, ctx:D96Parser.Non_static_id_cmlistContext):
         pass
 
 

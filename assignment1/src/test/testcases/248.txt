@@ -1,8 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        Var a: Array[Int, 0x0];
-                    }
-                }
-
-            
+Class H:__F{Var $_MA:Array [Array [Array [Int ,0b11_0],0105],0x1C];}Class _:_{Constructor (z,j,MU,__,j8:k_;o,_:Array [Int ,7_37];_,ix_z3,_:Float ;_,__T7rv,e:String ;_:Array [Boolean ,0x1C]){Continue ;{} }Constructor (){} }Class __8F7:_{Constructor (E_N_5H,D:_M){}$Q1(){Val W,h__:u;} }

@@ -1,8 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        Class LamTestMetVaiLoz{}
-                    }
-                }
-
-            
+Class _:f{Val l_Dw4:Array [Int ,0X4E];Constructor (_:F_;_0u_:Int ;__,_h_:TO;_,md:Float ){}Val $S_r_5:Array [Array [Array [Array [Boolean ,0b1011],0xE_2_1],0b110],0b10_0_1_11];}

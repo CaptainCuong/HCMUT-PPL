@@ -1,1 +1,1 @@
-Program(List(FuncDecl(Id(main),List(),IntType,Block(List(),List(CallExpr(Id(putIntLn),List()))))))
+Class _:_6_{}Class _26_Y:_Ob0C{Var _:E;}Class I_:DtO{Destructor (){} }Class J:__5V{Val $y,$s:Boolean ;}Class YuX{}Class _58{}

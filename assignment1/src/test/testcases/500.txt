@@ -1,1 +1,1 @@
-void main() {putInt(100);}
+Class _{Constructor (l05FE:Int ;C:String ){} }Class _2{Constructor (_,__,_:C1_;d_,T_:Boolean ;v,_:Float ;Q38,_,_8X:String ){}Constructor (j:Boolean ;_0,dx_:Float ;JeI:String ;_:Array [Int ,03_1_2_1]){}Constructor (P:Float ){} }Class W_{}

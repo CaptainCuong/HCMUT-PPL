@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-        b=1+-1--1+-1-+-1;
-        } 
-    }
-    
+Class _{}Class _{}Class _61D{Constructor (____,J_:Array [Float ,0B1];u:W_;_K_,n,_,_:Array [Array [Array [Array [Array [Int ,83],0B101001],0b1_1],04_2],0B1];_,Hn_:Array [Boolean ,0X46];g,q1_83,e:Boolean ;g,_:Boolean ;_0h:Float ;G8_:String ;Z:Array [Array [String ,9629],83]){} }

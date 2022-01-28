@@ -454,12 +454,12 @@ class D96Lexer(Lexer):
 
     def ILLEGAL_ESCAPE_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 6:
-            self.text = self.text.replace('"',''); raise IllegalEscape(self.text)
+            self.text = self.text[1:]; raise IllegalEscape(self.text)
      
 
     def UNCLOSED_STRING_action(self, localctx:RuleContext , actionIndex:int):
         if actionIndex == 7:
-            self.text = self.text.replace('"',''); raise UncloseString(self.text)
+            self.text = self.text[1:]; raise UncloseString(self.text)
      
 
     def ERROR_CHAR_action(self, localctx:RuleContext , actionIndex:int):

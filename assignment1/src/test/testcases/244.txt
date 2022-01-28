@@ -1,7 +1,1 @@
-
-                Class Shape{
-                    foo(){}
-                    Class LamTestMetVaiLoz{}
-                }
-
-            
+Class _:q4{}Class _4Z9:_c6{Constructor (__r,d:Array [Array [String ,6],613_49_1];Y,_:Array [Float ,0x2F]){}Destructor (){Val _:__;} }

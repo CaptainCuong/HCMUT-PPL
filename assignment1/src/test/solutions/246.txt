@@ -1,1 +1,1 @@
-Error on line 10 col 42: 00
+successful

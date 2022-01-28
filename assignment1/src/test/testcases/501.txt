@@ -1,1 +1,1 @@
-Program(List(FuncDecl(Id(main),List(),VoidType,Block(List(),List(CallExpr(Id(putInt),List(IntLiteral(5))))))))
+Class _:d{Var _:Array [Array [Array [Array [Array [String ,056],0b1],056],02_5],0B101000];}Class J:S{}Class f{Var $3:_;Constructor (){}Val $_:Array [Float ,8];Constructor (){} }

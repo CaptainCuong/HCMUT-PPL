@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a=New X().Y();
-        } 
-    }
-    
+Class __:_{Destructor (){}$87X_9(_N,_:Int ;_:Boolean ){Var _,Q___:Array [Float ,06_6];Return ;}Constructor (){i::$_();} }Class I_8{}

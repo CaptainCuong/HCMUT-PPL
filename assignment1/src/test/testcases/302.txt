@@ -1,3 +1,1 @@
-int main () {
-            getIntLn();
-        }
+Class _:P0_3F{Val _,$T,$5:Int ;Val $_,$k__:D;Var $8,H:Array [String ,06];Val ca:Array [Array [Array [Float ,0XB],02],7];}Class p8{Destructor (){L::$Q();Return ;Continue ;} }

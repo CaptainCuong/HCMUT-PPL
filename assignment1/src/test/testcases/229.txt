@@ -1,8 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = ("a"+."b")+."b";
-            c = ("a"==."a")==True;
-        } 
-    }
-    
+Class _{}Class _{Val $0,$_:String ;}Class Wi0:_{}Class _:ma5{Val $m,r_qMQ:Array [Array [Boolean ,0xB6_F],9];}Class _6{Var Y_k,$78,$3_8:Array [Array [Float ,02],02];}

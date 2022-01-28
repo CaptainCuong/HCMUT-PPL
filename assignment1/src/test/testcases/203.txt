@@ -1,1 +1,1 @@
-Var a: Array[Array[Int,5],5];
+Class E:d{}Class _4{Var U,_p,$f3Eo1y:Array [Boolean ,50];}Class _:o{Destructor (){} }Class N:D{}Class _:_{Var _:Array [Int ,65_4_9];}

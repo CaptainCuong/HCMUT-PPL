@@ -1,8 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = !!!!!!!!!!!!True;
-            b = ------------5;
-        } 
-    }
-    
+Class _u{Destructor (){} }Class q:_q{Constructor (e12,_,X:Array [Boolean ,0B1001];_:Array [Array [Boolean ,0116],7_9]){} }Class g:___{}Class _{}

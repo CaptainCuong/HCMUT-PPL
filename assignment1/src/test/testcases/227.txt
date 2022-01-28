@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = (b < c)  == True;
-        } 
-    }
-    
+Class _:_{Constructor (__:Array [Int ,024];d:B;_,G_,__:Array [Array [Array [Array [Array [String ,932],0b100010],0X3_8F_7],03],024];c,__,P__,_vz0,_3,w__:_u){} }

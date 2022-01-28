@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            ;
-        } 
-    }
-    
+Class It_iu:_{$_(_,V,n,J4:Array [Boolean ,46];_1:Array [Boolean ,0102];__:u;b,y0,f_,p:d_;c7_:C2H_){} }Class _z{$b(){} }Class _:E_x{}

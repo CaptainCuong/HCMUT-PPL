@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = b < c < True;
-        } 
-    }
-    
+Class c_{}Class nz84_{}Class _:_{}Class m_6b_:_D5{Var $__,xc4C,$jd,F:Array [Array [Array [Array [Boolean ,0B11],0B1],056],056];Val X,$r,$4___,W4L:Int ;}Class _F{Var _:Int ;}

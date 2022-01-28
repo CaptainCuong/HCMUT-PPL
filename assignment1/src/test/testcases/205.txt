@@ -1,6 +1,1 @@
-
-    Class Shape {
-        $getNumOfShape( {
-            Return self.length * self.width;
-        }
-    }
+Class __{Constructor (q:String ;eo4__:Array [Array [Boolean ,0b10_1_00],04];_,I,H90__:String ;_6:Boolean ;_,_:_I__;_:b){Continue ;}Var $D_U_,$_,N:_R7_;}

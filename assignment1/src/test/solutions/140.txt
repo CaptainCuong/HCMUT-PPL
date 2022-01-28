@@ -1,1 +1,1 @@
-Var,a,:,Int,;,<EOF>
+successful

@@ -1,9 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a::$b=2;
-            a::$e();
-            a::$c()::$d=2;
-        } 
-    }
-    
+Class __{Constructor (_:_1;_:Array [Array [Boolean ,0b1],0540_4];o:Float ;_:Array [Int ,66]){}Var _296:_;Destructor (){Break ;} }

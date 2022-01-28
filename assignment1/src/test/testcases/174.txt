@@ -1,1 +1,1 @@
-0b1_0101
+Class n:J_{Constructor (h_,_20G,B,_4_,E:Array [Array [Array [String ,80],07],9];__:Array [Int ,0B1011001];_VA_,yd,_:String ;_,Y,_:Array [String ,0X48]){}Val __,$H:_Z_;}

@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-        a+=1;
-        } 
-    }
-    
+Class O:_63{Var _,sj,_:__;Var $u_,$_49Nx,$_,$8,E:r_M;Val $si:Array [String ,021];Val __7,$_,$__:Array [String ,06];}Class _5_S:c{}

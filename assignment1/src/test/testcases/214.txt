@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a=1------1+1--1;
-        } 
-    }
-    
+Class R{Constructor (i:Array [Array [Array [Array [Int ,054],0XA],054],5_4_4];tx49,_w,_Ig:Boolean ){Continue ;} }

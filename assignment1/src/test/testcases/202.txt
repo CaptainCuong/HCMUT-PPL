@@ -1,5 +1,1 @@
-Class Rectangle: Shape {
-        getArea() {
-        Return self.length * self.width;
-    }
-}
+Class C_{Var $V_h0_4:Int ;}Class q_{Val $_,H,$J,_7_a,_:String ;}Class _2_{}Class _{Val $vp_,_:Array [Array [Int ,2],51];}

@@ -1,8 +1,1 @@
-
-            Class Shape {
-                foo(){
-                a=-1+1;
-                b=1+-1;
-                } 
-            }
-            
+Class _:__{}Class A7_49:_v26{Val $R0__,R_,_:Float ;Val X,_:Array [Array [Array [Array [Array [Float ,3],0b111010],0b1],8],050];}

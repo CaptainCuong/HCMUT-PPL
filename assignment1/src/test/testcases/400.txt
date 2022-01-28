@@ -1,1 +1,1 @@
-int main() {foo();}
+Class _9{Var A:_;Constructor (s,_:F__1_n){}Constructor (wu:_){}Val p_,_3:Int ;___(){} }Class R83__:_{Var I:Int ;Destructor (){}Var $_:Array [Boolean ,0121];}

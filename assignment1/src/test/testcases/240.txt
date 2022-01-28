@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-        Var a :Int = $1-----5;
-        } 
-    }
-    
+Class _6A:_96{Constructor (J,Z,KEj:Array [Array [String ,40],15];a:Array [Array [Array [Float ,0x8],40],8_6];_:Array [Array [Float ,40],0xF]){} }Class _mE{}

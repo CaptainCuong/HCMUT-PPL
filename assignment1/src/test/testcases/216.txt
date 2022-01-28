@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a();
-        } 
-    }
-    
+Class _{Destructor (){Break ;} }Class F{}Class _F:Q6h97{Val $__,$8_v:Array [Array [String ,0b1],0X6_2D_D];$_67c(){}Var _,M,_:Boolean ;}

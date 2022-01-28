@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            foo2(1+1,"a"+."b","a"==."b");
-        }
-    }
-    
+Class _J{}Class __2:_68{q6(n:__B;S__,A9890:Int ;Ho,_B_t:Int ){Break ;Break ;Continue ;Break ;{ {} }_H::$2j.f9._();} }Class _:E{}Class L{Var _:EQ;Val $_,$_7:Array [Float ,20];}

@@ -1,8 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        Var a: Array[Int, 1_23.456e+7];
-                    }
-                }
-
-            
+Class Dw_:z__4{Var $_Y:X_Y_V;$U_(){}Val $H570:Array [Array [Array [Float ,0140],0140],0X8];}Class C6{}Class P:l2__{}

@@ -1,9 +1,1 @@
-
-                Class Shape{
-                    foo(){
-                        b::$f=1;
-                    }
-                    a = 1;
-                }
-
-            
+Class __{Val $9:Boolean ;}Class q__B_a:_{}Class _{Val __fV3_,$Z_U,_8,_,_6j:Array [Array [Array [Float ,041],0b1010011],0B1_0];}

@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a.b();
-        } 
-    }
-    
+Class _:d{Val $CY:String ;}Class X:U1{}Class _:___{Val $e,Q6,U,d7:Boolean ;}Class _H{Destructor (){Val e6,_J:A;} }

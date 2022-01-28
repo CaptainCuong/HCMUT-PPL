@@ -1,1 +1,1 @@
-0xABCDEF,G,<EOF>
+successful

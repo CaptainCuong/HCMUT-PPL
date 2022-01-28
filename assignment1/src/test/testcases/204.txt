@@ -1,1 +1,1 @@
-1 + 1 + a.foo()
+Class S{Val d,$c:_;Destructor (){} }Class y_{Var SFP,__:Array [Array [Array [Array [Array [Int ,0XA6_6],02_14],37],0x7],05_2];Destructor (){} }Class l1{}Class e__0:C_{}Class _{}

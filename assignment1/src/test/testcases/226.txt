@@ -1,7 +1,1 @@
-
-    Class Shape {
-        foo(){
-            a = b == c  == True;
-        } 
-    }
-    
+Class aN:_2{Constructor (_:Array [Array [Array [Array [Array [Array [Array [Int ,54],0126],54],05],0X5],0x55],0b1101]){}Destructor (){Continue ;}$6(){Break ;} }Class __4E_{$n7(__6__rh3:c;_,_9_:Int ){Var p,_:Array [Array [Int ,0126],0b1_111];} }Class j_:g{}

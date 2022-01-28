@@ -1,1 +1,1 @@
-## This is a\n multi-line \n comment.\n ##
+Class _6{$HW(){}Var g:Array [Array [Array [Array [Array [Array [Array [Float ,0X5B],0X9],07_3],0B10],0X5B],8],20];}

@@ -1,5 +1,1 @@
-
-    Class Shape {
-        Var a :Array[Array[Int,2],2] = Array(Array(1,1),Array(1,1));
-    }
-    
+Class __:__{}Class s{$C(__,O,_5c,___,_:__;U,_,h,P_:Array [Float ,03_73];i,_,O:Float ){}Constructor (){} }Class _IUZ:r1Cs{Var $s_,$u:v;}Class J{}Class _:_{Val _,_,_l:Array [Boolean ,0b10110];}
