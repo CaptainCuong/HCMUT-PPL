@@ -9,8 +9,8 @@ options {
 }
 
 
-program: class_dcl+ EOF;
-//program : expr_lit EOF;
+//program: class_dcl+ EOF;
+program : expr_lit EOF;
 
 class_dcl : CLASS ID (CL id_list)? class_body;
 
@@ -74,20 +74,20 @@ expr_pro_cmlist : | CM expr_pro expr_pro_cmlist;
 
 expr : expr_lit
 //     | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access
-     | expr binary_op expr
-     | unary_op expr
-     | LB expr RB
+//     | expr binary_op expr
+//     | unary_op expr
+//     | LB expr RB
      ;
 
-expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr
-         | expr_lit LS (expr_lit | int_gen) RS
-         | expr_lit DOT ID LB para_pass_list RB
-         | expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB
-         | expr_lit DOT expr_lit
-         | expr_lit MEM_ACCESS_OP DOLLAR_ID
-         | unary_op expr_lit
-         | expr_lit binary_op expr_lit
-         | LB expr_lit RB
+expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr   // literal
+         | expr_lit LS (expr_lit | int_gen) RS                      // index element
+         | expr_lit DOT ID LB para_pass_list RB                     // method invocation
+         | expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB    // static method invocation
+         | expr_lit DOT expr_lit                                    // attribute access
+         | expr_lit MEM_ACCESS_OP DOLLAR_ID                         // static attribute access
+         | unary_op expr_lit                                        // unary operator
+         | expr_lit binary_op expr_lit                              // binary operator
+         | LB expr_lit RB                                           // (expr)
          ;
 
 //string_op : STR_CMP | STR_CONCAT;

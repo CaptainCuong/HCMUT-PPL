@@ -1,1 +1,1 @@
-Class R_{Val _,$_,z:Boolean ;Val bC,$_,N:Array [Float ,05_0];Var $t_A_32_:Array [Array [Boolean ,05],03_12_1];Val $_,ec_:Array [Array [Float ,0b11],0x45];Constructor (){} }
+7E-10

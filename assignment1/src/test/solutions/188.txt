@@ -1,1 +1,1 @@
-successful
+True,&&,True,False,||,False,<EOF>

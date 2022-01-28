@@ -1,1 +1,1 @@
-successful
+123.1e3000,0X1D,<EOF>

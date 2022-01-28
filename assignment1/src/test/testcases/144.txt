@@ -1,1 +1,1 @@
-Class D{$_(i6,E,_q_:k){Break ;}Val $_v6_,Z_,$5Ol,$P:Boolean ;}Class _5:TA_{t(){} }Class _001:_85{Var $H:Boolean ;}Class m:K{Var _:Array [String ,0B1000110];}
+a[b[012]][foo()]

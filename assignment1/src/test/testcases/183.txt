@@ -1,1 +1,1 @@
-Class _{Var R,$9f,$_:Array [Boolean ,0x3E];$__(_1Cc_F7,_4,_z,m_K_0:_){} }Class x{Var $K,$B:Array [Array [Array [Float ,0X64],1],0675];}
+ "This is a string containing tab \t" 

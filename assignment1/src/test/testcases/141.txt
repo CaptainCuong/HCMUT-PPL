@@ -1,1 +1,1 @@
-Class N{}Class B{Var Me67_:Array [Array [Array [Array [Float ,0b1],0x4],03_6_65],0x7];Constructor (__,v_0m,wn,_,On:_51;_2:_){} }
+foo(a,b:Int;c:String){}

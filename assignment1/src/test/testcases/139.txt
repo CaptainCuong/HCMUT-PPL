@@ -1,1 +1,1 @@
-Class t:_C{Constructor (V0r:h;_:Array [Array [Array [Array [Boolean ,07],0b11],011],7971];y,K:Array [Array [Boolean ,03_51_1],060_40244];_:Float ;g:L_){Break ;} }
+Var a:Int=1+1;

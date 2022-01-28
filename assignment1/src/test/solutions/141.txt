@@ -1,1 +1,1 @@
-successful
+foo,(,a,,,b,:,Int,;,c,:,String,),{,},<EOF>

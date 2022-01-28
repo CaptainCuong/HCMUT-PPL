@@ -1,1 +1,1 @@
-Class _:l_C05{}Class c__l{Var Uiv:String ;Val $_:Boolean ;}Class o{Val $9,_w_:Array [Boolean ,0b100100];}Class E:_a{Val _,$8,__:v;}
+ "1.0 +. 0.1 1.2 =/= 1.2 5.5 \. 1.1" 

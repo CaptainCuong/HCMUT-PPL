@@ -1,1 +1,1 @@
-successful
+1234567.123,<EOF>

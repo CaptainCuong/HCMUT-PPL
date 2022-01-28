@@ -1,1 +1,1 @@
-successful
+This is a string containing tab \t,<EOF>
