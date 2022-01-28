@@ -1,0 +1,14 @@
+
+                Class Shape{
+                    foo(){
+                        Var a: Array[Int, 01];
+                        Var a: Array[Int, 0x1];
+                        Var a: Array[Int, 0X1];
+                        Var a: Array[Int, 0b1];
+                        Var a: Array[Int, 0B1];
+                        Var a: Array[Int, 1];
+                        Var a: Array[Int, 00];
+                    }
+                }
+
+            

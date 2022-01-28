@@ -1,0 +1,8 @@
+
+                Class Shape{
+                    foo(){
+                        Class LamTestMetVaiLoz{}
+                    }
+                }
+
+            

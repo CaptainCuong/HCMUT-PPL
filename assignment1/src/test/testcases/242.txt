@@ -1,0 +1,9 @@
+
+                Class Shape{
+                    foo(){
+                        b::$f=1;
+                    }
+                    a = 1;
+                }
+
+            
