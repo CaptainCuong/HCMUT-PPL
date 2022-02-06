@@ -128,7 +128,7 @@ def serializedATN():
         buf.write("\3\2\2\2\u00dc\u00e2\3\2\2\2\u00dd\u00de\7\60\2\2\u00de")
         buf.write("\u00df\5\26\f\2\u00df\u00e0\5\24\13\2\u00e0\u00e2\3\2")
         buf.write("\2\2\u00e1\u00dc\3\2\2\2\u00e1\u00dd\3\2\2\2\u00e2\25")
-        buf.write("\3\2\2\2\u00e3\u00e4\5j\66\2\u00e4\u00e5\7/\2\2\u00e5")
+        buf.write("\3\2\2\2\u00e3\u00e4\5f\64\2\u00e4\u00e5\7/\2\2\u00e5")
         buf.write("\u00e6\5\u0082B\2\u00e6\27\3\2\2\2\u00e7\u00ee\5&\24\2")
         buf.write("\u00e8\u00ee\5,\27\2\u00e9\u00ee\5$\23\2\u00ea\u00ee\5")
         buf.write("\"\22\2\u00eb\u00ee\5(\25\2\u00ec\u00ee\5*\26\2\u00ed")
@@ -1183,7 +1183,7 @@ class D96Parser ( Parser ):
                 self.enterOuterAlt(localctx, 1)
 
                 pass
-            elif token in [D96Parser.DOLLAR_ID, D96Parser.ID, D96Parser.CL]:
+            elif token in [D96Parser.ID, D96Parser.CL]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 213
                 self.para_dcl()
@@ -1272,8 +1272,8 @@ class D96Parser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def id_list(self):
-            return self.getTypedRuleContext(D96Parser.Id_listContext,0)
+        def non_static_id_list(self):
+            return self.getTypedRuleContext(D96Parser.Non_static_id_listContext,0)
 
 
         def CL(self):
@@ -1302,7 +1302,7 @@ class D96Parser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 225
-            self.id_list()
+            self.non_static_id_list()
             self.state = 226
             self.match(D96Parser.CL)
             self.state = 227

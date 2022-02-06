@@ -10,7 +10,7 @@ options {
 
 
 program: class_dcl+ EOF;
-//program : expr_lit EOF;
+//program : non_static_id_list EOF;
 
 class_dcl : CLASS ID (CL id_list)? class_body;
 
@@ -36,7 +36,7 @@ para_dcl_list :
 para_dcl_smcllist :
                   | SEMI para_dcl para_dcl_smcllist;
 
-para_dcl : id_list CL data_type;
+para_dcl : non_static_id_list CL data_type;
 
 stm : (asm_stm | var_dcl | break_stm | continue_stm | return_stm | method_invoke_stm) SEMI
     | if_stm | for_in_stm
@@ -221,7 +221,7 @@ binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
 
 STRINGLIT : ('""' // Case 1: There is no character
           | '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"'] )'"') {self.text = self.text[1:-1]}; // Case 2: There is at least 1 character -> The single quote can not stand at the end of string
-          
+
 NULL : 'Null';
 
 MEM_ACCESS_OP : '::';
@@ -293,11 +293,11 @@ INTLIT_16 : ('0'[xX][1-9A-F]
 		  {self.text = self.text.replace("_","")};
 
 INTLIT_2 : ('0'[bB]'1'
-		 | '0'[bB]'1'[0-1_]*[0-1]) 		 
+		 | '0'[bB]'1'[0-1_]*[0-1])
 		 {self.text = self.text.replace("_","")};
 
 INTLIT_8 : ('0'[1-7]
-		 | '0'[1-7][0-7_]*[0-7]) 
+		 | '0'[1-7][0-7_]*[0-7])
 		 {self.text = self.text.replace("_","")};
 
 

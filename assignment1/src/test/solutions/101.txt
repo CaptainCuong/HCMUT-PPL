@@ -1,1 +1,1 @@
-successful
+Class,a,:,vr,{,_,(,___,:,Array,[,Boolean,,,50,],),{,},},Class,_,{,},Class,__x0R,{,Constructor,(,),{,{,},Return,;,},Constructor,(,i,,,_,,,bX,:,Array,[,Array,[,Float,,,0125,],,,0b1,],),{,},Constructor,(,),{,Break,;,},},Class,V2,:,_L4,{,Var,__,:,Array,[,Int,,,014,],;,},<EOF>
