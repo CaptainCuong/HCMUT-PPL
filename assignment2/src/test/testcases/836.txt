@@ -1,0 +1,1 @@
+Class u9u7_:C_{Constructor (){Continue ;Continue ;}_(_,_2P_:Boolean ){Return !!!-----Null ;} }

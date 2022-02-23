@@ -1,0 +1,1 @@
+Class _{Constructor (K,i__:Array [Array [Array [String ,81],0x6],0B1];H:Array [Array [Array [Boolean ,0b111],0B1],01];_:Boolean ;L:Array [Array [Boolean ,0X5_5],0B1_1_0_0];W:Array [Array [Float ,06],4_4];_:J0){}Constructor (K9:Array [Int ,0xD_2_A];_9:Array [Int ,81]){Return ;}Val _2,$q43,_,$_O:Array [Array [Int ,05_1_2],064];}

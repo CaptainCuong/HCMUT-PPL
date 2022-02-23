@@ -1,0 +1,1 @@
+Class _{Var _:Array [Array [Array [Boolean ,0X3F],23],0XF_4];}Class _{}

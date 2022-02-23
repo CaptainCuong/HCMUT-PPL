@@ -1,0 +1,1 @@
+Class H{Constructor (){} }Class _{}Class A:__Nb{$_1(){} }

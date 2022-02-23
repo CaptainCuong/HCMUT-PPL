@@ -1,0 +1,1 @@
+Class z2:b{Constructor (){}Var _EjX,_,$W,$_G,s,_:Boolean ;}

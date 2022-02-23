@@ -1,0 +1,1 @@
+Class E0V{Var $_:Array [Array [Array [Array [String ,10],0b1000011],0100],84];}

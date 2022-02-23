@@ -1,0 +1,1 @@
+Class ff{}Class fRb{Constructor (){ {}Return ;}Destructor (){} }

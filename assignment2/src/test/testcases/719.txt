@@ -1,0 +1,1 @@
+Class W{Destructor (){}Var $____:j;Constructor (){} }Class _3{}

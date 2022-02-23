@@ -1,0 +1,1 @@
+Class __7:_{Constructor (s:n;D,c,a:__;_2:Array [Int ,41];M,we:_98;G:String ){} }

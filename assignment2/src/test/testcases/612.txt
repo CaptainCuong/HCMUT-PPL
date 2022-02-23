@@ -1,0 +1,1 @@
+Class J{Var $E:Array [Array [Boolean ,0xC],0b1];Constructor (_3:Array [String ,0B100100]){} }

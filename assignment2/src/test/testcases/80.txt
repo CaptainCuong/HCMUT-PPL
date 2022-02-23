@@ -1,0 +1,1 @@
+Class _3_{Constructor (d,_,_:Array [Array [Boolean ,0b11010],0x47]){} }

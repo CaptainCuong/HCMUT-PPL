@@ -1,0 +1,1 @@
+Class L:R{Destructor (){}Destructor (){Break ;Break ;} }Class _{}

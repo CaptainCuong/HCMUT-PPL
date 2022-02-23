@@ -1,0 +1,1 @@
+Class _{Var $_,$X_:Array [Float ,5];}Class __m{Constructor (){} }

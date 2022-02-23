@@ -1,0 +1,1 @@
+Class _{Var f__:Array [Boolean ,52];}Class _:o_{}Class _:_{}Class U{}

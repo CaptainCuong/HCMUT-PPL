@@ -1,0 +1,1 @@
+Class r{}Class w:T{Constructor (){} }Class __k{Destructor (){} }

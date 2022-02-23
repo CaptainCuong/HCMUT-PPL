@@ -1,0 +1,1 @@
+Class B{Var $06_,$44,_T,$e_,K:Array [Array [Array [Array [Array [Array [Array [Boolean ,0x30_2A_7],0X4A],0b1100010],056],0X4A],0B11],0XD_3];}Class _{}

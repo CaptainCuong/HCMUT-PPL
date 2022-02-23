@@ -1,0 +1,1 @@
+Class _B{Var $A:Array [Float ,067];Var _,S2_,_:Array [Boolean ,0X3F];}

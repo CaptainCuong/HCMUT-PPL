@@ -1,0 +1,1 @@
+Class C{Var I,u,$i3:Array [Array [Array [Boolean ,0x4],0B1010001],0X5F];}

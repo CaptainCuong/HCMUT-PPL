@@ -1,0 +1,1 @@
+Class _G:C_{Constructor (k,Lo:String ){Break ;}Constructor (U:String ){} }

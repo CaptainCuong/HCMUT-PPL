@@ -1,0 +1,1 @@
+Class a{Destructor (){Break ;}Constructor (f:Array [Array [Int ,0b1000011],0x51];_:Array [Array [Array [Int ,0b1000011],0141],0141]){} }

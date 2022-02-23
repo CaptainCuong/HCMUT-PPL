@@ -1,0 +1,1 @@
+Class t7{Destructor (){} }Class _{Destructor (){} }Class F:_{}

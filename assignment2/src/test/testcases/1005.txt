@@ -1,0 +1,1 @@
+Class _:_0_{Constructor (A7aJ:Array [Float ,37];__:Array [Boolean ,37];f:Array [Float ,02]){Break ;}Destructor (){}Var N,_:__3;}

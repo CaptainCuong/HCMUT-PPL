@@ -1,0 +1,1 @@
+Class f2:k{Var M,d7:Array [Float ,050];Var $j,vR:Boolean ;}

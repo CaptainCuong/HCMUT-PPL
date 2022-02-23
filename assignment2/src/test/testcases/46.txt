@@ -1,0 +1,1 @@
+Class vsP{Destructor (){ {}Continue ;{ {Break ;} }} }Class ___{Var GZ,$0:Int ;}

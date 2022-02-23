@@ -1,0 +1,1 @@
+Class _0__0R_{Constructor (_S2e,W:Array [Array [Int ,1],0b111];F:Array [Boolean ,60]){} }Class I99_:s2{}Class od:T6D7{Var $_G:Array [String ,60];}

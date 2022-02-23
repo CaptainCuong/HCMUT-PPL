@@ -1,0 +1,1 @@
+Class _{O(_,s1:Array [Array [Float ,80],80];_:Array [Array [Array [Array [Array [Boolean ,0B1_0],0X6],0B101111],0xC_33],055_7];N:Float ;_:X__;_B:__){} }

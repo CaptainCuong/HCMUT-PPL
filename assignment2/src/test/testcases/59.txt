@@ -1,0 +1,1 @@
+Class g_2:T{Constructor (u:Array [String ,2];Z,_:String ;G,z:Array [String ,2_2]){} }
