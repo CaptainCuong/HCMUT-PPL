@@ -1,1 +1,0 @@
-Class D{}Class _:_{Constructor (_:Array [Array [Array [Int ,06],04],0b10101];__:Array [Array [Boolean ,0XE],02];M:Array [Int ,0140]){} }

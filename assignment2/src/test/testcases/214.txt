@@ -1,1 +1,0 @@
-Class __:w{}Class __{Destructor (){Continue ;Break ;}$W(){} }

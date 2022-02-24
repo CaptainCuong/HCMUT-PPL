@@ -1,1 +1,0 @@
-Class i_4F_{}Class __:t_{Constructor (){___H6::$hwg();} }

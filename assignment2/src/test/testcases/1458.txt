@@ -1,1 +1,0 @@
-Class l:_23{Constructor (_:Array [Array [Array [Int ,8],0X60],8]){Var _1_By ,dR_H84:Array [Array [Boolean ,0B1100100],0B10];}Var _6:Array [Array [String ,023_36],0X3];Constructor (){} }

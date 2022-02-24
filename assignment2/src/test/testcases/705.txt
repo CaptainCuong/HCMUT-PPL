@@ -1,1 +1,0 @@
-Class q:__{Constructor (){}Var _h,B:Array [Float ,0x2E];}

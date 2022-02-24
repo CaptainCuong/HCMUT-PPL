@@ -1,1 +1,0 @@
-Class _:_{}Class _:_0{}Class w:X{}Class __{Destructor (){}Constructor (_:wu){} }Class k{Var $_:Float ;Var _6,_:Float ;}

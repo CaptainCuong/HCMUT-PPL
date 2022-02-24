@@ -1,1 +1,0 @@
-Class k_2__:KMG{Constructor (M,_,a,_:_l__){} }Class m{$D(){} }

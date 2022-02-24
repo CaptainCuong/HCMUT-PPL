@@ -1,1 +1,0 @@
-Class y:___{Destructor (){ {} }Constructor (){ {} }}Class _{}Class Q:___R{}

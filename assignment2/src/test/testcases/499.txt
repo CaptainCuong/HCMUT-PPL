@@ -1,1 +1,0 @@
-Class g{Var $1cB:_;Var $8:Array [Array [String ,0B1000101],0x9];Var $W,$7hh_:Array [Array [Array [Array [Float ,0130],2_0],0B11],0xD];}

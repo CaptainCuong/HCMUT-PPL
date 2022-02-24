@@ -1,1 +1,0 @@
-Class __4:X_e{Destructor (){Break ;} }Class _:K5{}Class K{}

@@ -1,1 +1,0 @@
-Class _:_{}Class _{Constructor (){} }Class _0_:SsQ{Var _,$_l6_:Float ;Var $pl:Int ;$_9___(){} }

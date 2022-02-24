@@ -1,1 +1,0 @@
-Class __{$p(){Break ;} }Class _:P6{__(__5_:Int ;tu:W){}Var KO,N:String ;}

@@ -1,1 +1,0 @@
-Class A{Var $V__a:__;}Class __:j{Constructor (){} }Class _0_:x{}

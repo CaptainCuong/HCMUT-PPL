@@ -1,1 +1,0 @@
-Class Y_7Q{Constructor (){}Constructor (){}Destructor (){} }

@@ -1,1 +1,0 @@
-Class _{$_(W:Array [Float ,0xA];__:Boolean ;_:String ){} }

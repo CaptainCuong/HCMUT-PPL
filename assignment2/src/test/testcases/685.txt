@@ -1,1 +1,0 @@
-Class r:_3_{Constructor (_:Float ;_J:M_;_Bz:Int ){}Destructor (){} }Class s{}

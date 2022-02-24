@@ -1,1 +1,0 @@
-Class _r{Constructor (N,H_,E,vi_0e_:Int ;W,l:y_1_;_g:Int ;H40P:Array [Boolean ,0XEF];_d:_;_:Float ;__:q;_,_n,_,_,_0:X){} }

@@ -1,1 +1,0 @@
-Class _x:_{Var $Ao:Array [Int ,0b10];Constructor (__1:a){} }

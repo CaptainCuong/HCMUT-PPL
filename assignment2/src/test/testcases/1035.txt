@@ -1,1 +1,0 @@
-Class K:k_{Var NM:String ;vSh3_Ia(PX1:Array [Int ,70];___,F7,j5P_:Array [Array [String ,01],70];_p:b;__V,C_:String ){Return ;} }

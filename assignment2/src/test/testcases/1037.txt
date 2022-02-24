@@ -1,1 +1,0 @@
-Class w_05{Var $_,$30,$BA:Array [Array [Int ,0b1_1],9];}Class _:_{Var __,h,O,$_0:Float ;Constructor (_,__4,_:Int ;V:Array [Array [Array [Float ,0x6_2F],0B1000],0B11_1];_y:Float ;_,z9_:Boolean ){} }Class N{}

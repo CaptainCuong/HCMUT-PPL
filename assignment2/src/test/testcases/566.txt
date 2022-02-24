@@ -1,1 +1,0 @@
-Class _1:Q50{}Class __3_Y{Constructor (_3_0:Float ;Z,_2:Int ){}Destructor (){} }

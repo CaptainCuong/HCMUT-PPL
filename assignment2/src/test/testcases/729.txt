@@ -1,1 +1,0 @@
-Class L4{Var _z_,d_:Array [Array [Array [Int ,0b1000010],5_6],0B11];_(A:Array [Array [Array [String ,19],1],0B1];p,Fx2:Float ;_:Float ;V,Wy2_,Uk,A:_;r_:Array [Array [Array [Array [Float ,03],04],01],0x7]){}Constructor (){} }

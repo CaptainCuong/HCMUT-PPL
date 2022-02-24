@@ -1,1 +1,0 @@
-Class _:R{Destructor (){Var _,t,_:Int ;}Destructor (){} }

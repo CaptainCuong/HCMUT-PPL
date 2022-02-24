@@ -1,1 +1,0 @@
-Class k23:_{Destructor (){} }Class _:_{Var $T,$3:String ;}

@@ -1,1 +1,0 @@
-Class k:_{Var N,i,j:Array [Array [Array [String ,0x9],0X32],0B10011];Var $7,$_,t,CB4,$1,y,R_:Array [Array [Array [Array [Boolean ,031],37],04],0x16];}

@@ -1,1 +1,0 @@
-Class _{Var lR:Array [Array [Array [String ,0XC_1F],0b11_10_0_1],0XC];}

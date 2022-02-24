@@ -1,1 +1,0 @@
-Class N9:l{Var $p:Array [Int ,0xE];Var $wZ:Array [Array [Int ,0b10],0XF];Val $4:Array [Array [Array [Array [Array [Boolean ,042],69],03],042],05];}

@@ -1,1 +1,0 @@
-Class _6_:v_{}Class q__6:A{Destructor (){}Constructor (){} }

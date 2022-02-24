@@ -1,1 +1,0 @@
-Class _q_t:Z{Destructor (){ {}Continue ;Return ;}Constructor (){} }

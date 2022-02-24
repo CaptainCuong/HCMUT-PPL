@@ -1,1 +1,0 @@
-Class _{}Class _:_V_0{Var $w:Array [Float ,19_24_6_4];}Class _:_{Destructor (){}Constructor (_1T:Array [Int ,01_1_4_6];_,_,b,ntU:_9){} }Class __8I:_8{}

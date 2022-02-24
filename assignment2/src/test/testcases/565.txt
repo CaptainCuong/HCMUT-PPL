@@ -1,1 +1,0 @@
-Class sh5_{Constructor (___,_:String ;q:m;_,N,ID:Array [Array [Array [Array [Array [Array [Array [String ,0XBB],0xC],0X6],024],88],0X28],024]){} }

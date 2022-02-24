@@ -1,1 +1,0 @@
-Class __{Constructor (){} }Class Z{Var _:Array [Array [Array [Array [Array [Array [Array [Int ,0x8_2_1],0B1],0b10],0b1_0_0_1100],0x35],0XA],18];}

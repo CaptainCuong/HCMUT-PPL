@@ -1,1 +1,0 @@
-Class a_:_4{Var $_,_2,_V:Int ;}Class __:_{Destructor (){} }

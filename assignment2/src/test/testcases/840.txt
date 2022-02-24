@@ -1,1 +1,0 @@
-Class h{Constructor (L:Int ;_:Array [Int ,0137]){}Constructor (){} }

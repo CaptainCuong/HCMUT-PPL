@@ -1,1 +1,0 @@
-Class l{Constructor (_6,_,Q,M,l:Int ;_:String ){} }Class _:z{}

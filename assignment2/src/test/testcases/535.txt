@@ -1,1 +1,0 @@
-Class _0C{Var $_,$_,I,_,$_:Array [Float ,02463];}Class c1:A{}

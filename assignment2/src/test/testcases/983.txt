@@ -1,1 +1,0 @@
-Class p{}Class C123{Var $_6jX3,$2_:Boolean ;Var g,z:Array [Int ,6];}

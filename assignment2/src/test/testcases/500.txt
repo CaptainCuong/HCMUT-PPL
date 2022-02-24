@@ -1,1 +1,0 @@
-Class __:_{Destructor (){Return ;Continue ;Break ;} }Class a{Constructor (){Continue ;} }Class __{Var $d0,$_,$88:Array [Array [Array [Array [Int ,0x43],65],057],0X15];Var _8u7,$k,u4rw10,$txs7,_,C:O;}

@@ -1,1 +1,0 @@
-Class _:_{}Class x{Destructor (){Return ;}Destructor (){} }

@@ -1,1 +1,0 @@
-Class __2{Val _,$a6,t_:Int ;Var $1:_;Constructor (_:Int ;G,_:Int ;za:_G2;_:___4B){} }Class nT{Var M:Boolean ;Constructor (){} }

@@ -1,1 +1,0 @@
-Class I{Constructor (){}Var s_39,$_:Array [Array [Array [Array [Int ,5],0XB],0157],19];Destructor (){}$S(){} }Class P:D4G_{}

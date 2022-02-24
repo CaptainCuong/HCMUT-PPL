@@ -1,1 +1,0 @@
-Class x{}Class _:l{Y(_:Boolean ){ {} }Destructor (){Continue ;} }Class p:_{}

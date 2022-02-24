@@ -1,1 +1,0 @@
-Class q3:O{}Class a:q{}Class _{}Class N:M{Destructor (){} }Class Hd4o{}Class _{_8(){}_(){} }

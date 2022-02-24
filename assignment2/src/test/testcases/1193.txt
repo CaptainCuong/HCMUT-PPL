@@ -1,1 +1,0 @@
-Class J:N{Var Z1,____:Array [Int ,0X4];}Class z:_{}Class _2{}Class B_1{Val $_:Array [Array [Boolean ,6],01];Destructor (){} }

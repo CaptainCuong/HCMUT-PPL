@@ -1,1 +1,0 @@
-Class _{}Class _:C1{Constructor (LY_,O,__:Int ){}Destructor (){Break ;Continue ;} }

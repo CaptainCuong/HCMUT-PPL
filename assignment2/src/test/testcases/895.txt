@@ -1,1 +1,0 @@
-Class q_D5{Constructor (_,d0,G,_,__K:K;IQT:String ;_:_;s,a:Float ;S:Boolean ;_:A){} }

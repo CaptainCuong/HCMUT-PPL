@@ -1,1 +1,0 @@
-Class kl{Var $E:Array [Array [Float ,0X6_1],04];}Class H:C{}

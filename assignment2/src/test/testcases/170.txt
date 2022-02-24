@@ -1,1 +1,0 @@
-Class g:__{}Class _:ZHa2{Constructor (){Var _,__,a:_;} }

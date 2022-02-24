@@ -1,1 +1,0 @@
-Class _76_:_58{Constructor (){}Var bK:Array [Boolean ,0B100010];Var $G:Array [Array [Int ,0x51],41];}

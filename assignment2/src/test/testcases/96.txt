@@ -1,1 +1,0 @@
-Class Hu{Constructor (){}_8FC(_5X4:Array [Boolean ,0B111];Bm,Y_P2,p:Array [Array [String ,3],0b1];x:p){} }

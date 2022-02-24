@@ -1,1 +1,0 @@
-Class a1:_5{Constructor (){Break ;}Val $_,$C:_;}Class u{}Class _{Val _:Array [Array [Array [Array [String ,0X5B],0X5B],0x4F],0B1];}

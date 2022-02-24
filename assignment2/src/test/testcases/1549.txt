@@ -1,1 +1,0 @@
-Class AR:c{Var k4,E:Array [Array [Array [Array [Array [Array [Array [Boolean ,0B1],0b1011100],0b10_0_1_0],0b1_0],0107],0x20],49];}

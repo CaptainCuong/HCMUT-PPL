@@ -1,1 +1,0 @@
-Class v:l1W1{}Class _0:C2R{Constructor (of:Boolean ){} }

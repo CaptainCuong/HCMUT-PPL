@@ -1,1 +1,0 @@
-Class N:D_{Z(_a5,_:Array [Float ,4_7];__1:Array [Array [Array [Int ,0b101110],1],0b101110]){} }

@@ -1,1 +1,0 @@
-Class X{Var e,$_,I:Array [Array [Float ,020],0X2E];}Class _{}

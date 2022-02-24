@@ -1,1 +1,0 @@
-Class _{Var C:Array [Array [Array [Array [Float ,0xD_F_2],020],0B11000],0x23A_E_4];Constructor (){Continue ;}Destructor (){} }

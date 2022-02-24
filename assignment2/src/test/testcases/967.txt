@@ -1,1 +1,0 @@
-Class MM_{Var $_,$p,t,$_,$Y_:Boolean ;Constructor (){Return ;} }Class _{}

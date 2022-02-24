@@ -1,1 +1,0 @@
-Class __{Destructor (){}Constructor (){} }Class __:_8G_{}

@@ -1,1 +1,0 @@
-Class _N:C{Var d,$D:Array [Array [Int ,86],0B1001];}Class _86_{Destructor (){} }

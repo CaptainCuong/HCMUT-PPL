@@ -1,1 +1,0 @@
-Class N{Constructor (_,_,L:Array [Array [Float ,25],25]){ {} }}Class zEl:K0_{M(_,aLR_Q_:Array [Float ,6]){} }

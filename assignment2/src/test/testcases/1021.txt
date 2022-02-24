@@ -1,1 +1,0 @@
-Class Hj{Constructor (_q_,__4_7_0_5_,__,_:String ;__,I44x:Float ){}Var $F2:Array [Array [Boolean ,0x49],0XD5];}

@@ -1,1 +1,0 @@
-Class R:_o{Destructor (){}Var _:Array [Boolean ,13];Constructor (){} }

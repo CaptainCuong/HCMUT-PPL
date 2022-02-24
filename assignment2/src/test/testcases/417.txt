@@ -1,1 +1,0 @@
-Class H_{Constructor (){}Destructor (){} }Class S:m{Constructor (_i105:Int ){} }

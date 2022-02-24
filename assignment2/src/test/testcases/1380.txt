@@ -1,1 +1,0 @@
-Class _{Constructor (_,_:_6;_:S;_:Array [Boolean ,05];__:Array [String ,0X20];G,r:Boolean ;_z1:Int ;_5,j_Nq:___){} }

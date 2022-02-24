@@ -1,1 +1,0 @@
-Class __{Var O:Array [Float ,0X25];}Class hk_:_{}Class T{Var __,x:Boolean ;}

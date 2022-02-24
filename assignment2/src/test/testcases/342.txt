@@ -1,1 +1,0 @@
-Class b:_{}Class _{Var $E:Array [Array [Array [Float ,0b1011111],0b1],0x36];}

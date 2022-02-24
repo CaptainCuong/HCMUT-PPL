@@ -1,1 +1,0 @@
-Class v:_{}Class gs{Constructor (){}Var _,$_a,$_:String ;}

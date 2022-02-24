@@ -1,1 +1,0 @@
-Class VK:_{_(){} }Class _:_e_{}Class _{Constructor (){}Var _:_;}

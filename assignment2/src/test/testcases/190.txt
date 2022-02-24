@@ -1,1 +1,0 @@
-Class _{Destructor (){}Var $_:String ;Constructor (_,u:String ){} }

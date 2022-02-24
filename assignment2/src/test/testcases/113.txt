@@ -1,1 +1,0 @@
-Class I:_{Var __4:Array [Array [Array [Array [Array [Float ,0X3C],050],0x702],0x3],0B1011];}

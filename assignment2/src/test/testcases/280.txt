@@ -1,1 +1,0 @@
-Class _{h(){}Constructor (J:_){}Var $_:String ;}Class _{}

@@ -1,1 +1,0 @@
-Class _{}Class _g:SY{}Class _{Destructor (){Var t,s:Array [String ,0b1100001];}Var i:Array [Array [Float ,02_2],0100];}Class r{}

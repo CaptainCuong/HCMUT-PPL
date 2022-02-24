@@ -1,1 +1,0 @@
-Class _k{Constructor (i,_dV7,A:Float ;_:Boolean ;_Ra:_;X04:Array [Array [Boolean ,04],0X43]){}Destructor (){}Var $_:Boolean ;}

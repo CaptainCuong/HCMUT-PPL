@@ -1,1 +1,0 @@
-Class _:X{Destructor (){}$M(){Continue ;}Var D,$1,E:_;Destructor (){} }Class e{}Class P:x___{}Class C{}

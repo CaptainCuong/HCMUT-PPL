@@ -1,1 +1,0 @@
-Class _:__{Constructor (){}Var __d,$4:Array [String ,0b1];}

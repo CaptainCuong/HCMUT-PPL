@@ -1,1 +1,0 @@
-Class _U:_2w3h5v{Var _:Array [Array [Boolean ,0X4],0X4E];}

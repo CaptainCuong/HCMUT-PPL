@@ -1,1 +1,0 @@
-Class _:___{Var $k7_:o;Destructor (){}K(m,G:Array [Boolean ,06]){} }

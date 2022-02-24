@@ -1,1 +1,0 @@
-Class _:J{Destructor (){}Constructor (){}Constructor (s:Array [Array [Array [Int ,96_0_50],5],0b11001]){} }
