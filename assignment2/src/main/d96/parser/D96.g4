@@ -87,9 +87,16 @@ expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr   // literal
          | expr_lit DOT expr_lit                                    // attribute access(3)
          | expr_lit MEM_ACCESS_OP DOLLAR_ID                         // static attribute access(3)
          | unary_op expr_lit                                        // unary operator(2)
+         | expr_lit ADDOP term
+         | expr_lit SUBOP term
          | expr_lit binary_op expr_lit                              // binary operator(3)
          | LB expr_lit RB                                           // (expr)(3)
          ;
+
+binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
+          | GREAT_THAN | SUBOP | MULOP | LESS_THAN | MODOP
+          |DIVOP | NOT_EQUAL | EQUAL | AND | OR | STR_CMP | STR_CONCAT
+          | DOT | MEM_ACCESS_OP;
 
 //string_op : STR_CMP | STR_CONCAT;
 //
@@ -109,7 +116,7 @@ expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr   // literal
 //     | LB expr RB
 //     ;
 
-object_ini : NEW ID LB expr_pro_list RB;
+object_ini : NEW expr_pro LB expr_pro_list RB;
 
 instance_method_invoke : expr_lit DOT ID LB para_pass_list RB;
 

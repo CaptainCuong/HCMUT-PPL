@@ -206,7 +206,7 @@ def serializedATN():
         buf.write("\u0191\u0178\3\2\2\2\u0191\u0180\3\2\2\2\u0191\u0187\3")
         buf.write("\2\2\2\u0191\u018e\3\2\2\2\u0192\u0195\3\2\2\2\u0193\u0191")
         buf.write("\3\2\2\2\u0193\u0194\3\2\2\2\u0194\67\3\2\2\2\u0195\u0193")
-        buf.write("\3\2\2\2\u0196\u0197\7\7\2\2\u0197\u0198\7%\2\2\u0198")
+        buf.write("\3\2\2\2\u0196\u0197\7\7\2\2\u0197\u0198\5\b\5\2\u0198")
         buf.write("\u0199\7*\2\2\u0199\u019a\5\60\31\2\u019a\u019b\7+\2\2")
         buf.write("\u019b9\3\2\2\2\u019c\u019d\5\66\34\2\u019d\u019e\7&\2")
         buf.write("\2\u019e\u019f\7%\2\2\u019f\u01a0\7*\2\2\u01a0\u01a1\5")
@@ -2661,8 +2661,9 @@ class D96Parser ( Parser ):
         def NEW(self):
             return self.getToken(D96Parser.NEW, 0)
 
-        def ID(self):
-            return self.getToken(D96Parser.ID, 0)
+        def expr_pro(self):
+            return self.getTypedRuleContext(D96Parser.Expr_proContext,0)
+
 
         def LB(self):
             return self.getToken(D96Parser.LB, 0)
@@ -2695,7 +2696,7 @@ class D96Parser ( Parser ):
             self.state = 404
             self.match(D96Parser.NEW)
             self.state = 405
-            self.match(D96Parser.ID)
+            self.expr_pro()
             self.state = 406
             self.match(D96Parser.LB)
             self.state = 407
