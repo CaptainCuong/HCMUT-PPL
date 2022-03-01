@@ -119,7 +119,7 @@ class ASTGeneration(D96Visitor):
         body: Block
         '''
         ID = ctx.getChild(0).getText()
-        static = (ID[0] == '$')
+        static = (ID[0] == '$' or ID == 'main')
         para_lst = ctx.para_dcl_list().accept(self)
         return [MethodDecl(Static() if static else Instance(), Id(ID), ctx.para_dcl_list().accept(self), ctx.method_block().accept(self))]
 
@@ -170,19 +170,19 @@ class ASTGeneration(D96Visitor):
 
     # Visit a parse tree produced by D96Parser#for_in_stm.
     def visitFor_in_stm(self, ctx):
-        ID = ctx.ID().accept(self)
+        ID = ctx.ID().getText()
         expr_pro = ctx.expr_pro()
         block = ctx.block_stm()
         if ctx.BY():
-            return For(ID, expr_pro[0].accept(self), expr_pro[1].accept(self), block.accept(self), expr_pro[-1].accept(self))
-        return For(ID, expr_pro[0].accept(self), expr_pro[1].accept(self), block.accept(self), None)
+            return For(Id(ID), expr_pro[0].accept(self), expr_pro[1].accept(self), block.accept(self), expr_pro[-1].accept(self))
+        return For(Id(ID), expr_pro[0].accept(self), expr_pro[1].accept(self), block.accept(self), None)
 
 
     # Visit a parse tree produced by D96Parser#if_stm.
     def visitIf_stm(self, ctx):
         if ctx.ELSE():
-            return If(ctx.expr_pro(0).accept(self), ctx.block_stm(0).accept(self), ctx.block_stm()[-1].accept(self))
-        return If(ctx.expr_pro(0).accept(self), ctx.block_stm(0).accept(self))
+            return reduce(lambda x, y: If(y[0].accept(self),y[1].accept(self),x), list(zip(ctx.expr_pro()[-2::-1], ctx.block_stm()[-3::-1])), If(ctx.expr_pro()[-1].accept(self), ctx.block_stm()[-2].accept(self), ctx.block_stm()[-1].accept(self)))
+        return reduce(lambda x, y: If(y[0].accept(self),y[1].accept(self),x), list(zip(ctx.expr_pro()[::-1], ctx.block_stm()[::-1])), None)
 
 
     # Visit a parse tree produced by D96Parser#block_stm.
@@ -273,6 +273,23 @@ class ASTGeneration(D96Visitor):
 
     # Visit a parse tree produced by D96Parser#expr_lit.
     def visitExpr_lit(self, ctx):
+        precedence = {
+                    # 'New':10, 
+                    # '::':9, 
+                    # '.':8, 
+                    # '[,]':7, 
+                    '!':6, 
+                    '*':5, '/':5, '%':5, 
+                    '+':4, '-':4, 
+                    '&&':3, '||':3,
+                    '==':2, '!=':2, '<':2, '>':2, '<=':2, '>=':2, 
+                    '+.':1, '==.':1 }
+        '''
+        Do not have
+        Static Access, Instance Access : FieldAccess
+        Index operator :  ArrayCell
+        Sign : Unary
+        '''
         if ctx.ID() and ctx.getChildCount() == 1:
             if ctx.ID().getText() == 'Self':
                 return SelfLiteral()
@@ -283,18 +300,66 @@ class ASTGeneration(D96Visitor):
             return ctx.getChild(0).accept(self)
 
         if ctx.getChildCount() == 4:
+            left_ret = ctx.expr_lit(0).accept(self)
+            if isinstance(left_ret, ArrayCell):
+                return ArrayCell(left_ret.arr, left_ret.idx+[ctx.getChild(2).accept(self)])
             return ArrayCell(ctx.expr_lit(0).accept(self), [ctx.getChild(2).accept(self)])
         
         if ctx.getChildCount() == 6:
             return CallExpr(ctx.getChild(0).accept(self), Id(ctx.getChild(2).getText()), ctx.para_pass_list().accept(self))
 
         if ctx.getChildCount() == 3 and (ctx.DOT() or ctx.MEM_ACCESS_OP()):
-            return FieldAccess(ctx.expr_lit(0).accept(self), Id(ctx.DOLLAR_ID().getText()) if ctx.DOLLAR_ID() else ctx.expr_lit(1).accept(self))
+            return FieldAccess(ctx.expr_lit(0).accept(self), Id(ctx.DOLLAR_ID().getText()) if ctx.DOLLAR_ID() else Id(ctx.ID().getText()))
+
+        # if ctx.getChildCount() == 3 and (ctx.ADDOP() or ctx.SUBOP() or ctx.DIVOP() or ctx.MULOP()):
+        #     return BinaryOp(ctx.getChild(1).getText(), ctx.expr_lit(0).accept(self), ctx.expr_lit(1).accept(self))
 
         if ctx.unary_op():
             return UnaryOp(ctx.unary_op().accept(self), ctx.expr_lit(0).accept(self))
+
         if ctx.binary_op():
+            if isinstance(ctx.expr_lit(0).accept(self), BinaryOp) and \
+            isinstance(ctx.expr_lit(1).accept(self), BinaryOp) \
+            and not ctx.expr_lit(0).LB() \
+            and not ctx.expr_lit(1).LB():
+                if precedence[ctx.binary_op().accept(self)] > precedence[ctx.expr_lit(0).accept(self).op] and \
+                precedence[ctx.binary_op().accept(self)] > precedence[ctx.expr_lit(1).accept(self).op] and \
+                precedence[ctx.binary_op(0).accept(self)] >= precedence[ctx.expr_lit(1).accept(self).op]:
+                    return BinaryOp(ctx.expr_lit(1).accept(self).op, BinaryOp(ctx.expr_lit(0).accept(self).op, ctx.expr_lit(0).accept(self).left, BinaryOp(ctx.binary_op().accept(self), ctx.expr_lit(0).accept(self).right, ctx.expr_lit(1).accept(self).left)), ctx.expr_lit(1).accept(self).right)
+
+                if precedence[ctx.binary_op().accept(self)] <= precedence[ctx.expr_lit(0).accept(self).op] and \
+                precedence[ctx.binary_op().accept(self)] >= precedence[ctx.expr_lit(1).accept(self).op]:
+                    return BinaryOp(ctx.expr_lit(1).accept(self).op, BinaryOp(ctx.binary_op().accept(self), ctx.expr_lit(0).accept(self), ctx.expr_lit(1).accept(self).left),ctx.expr_lit(1).accept(self).right)
+
+                if precedence[ctx.binary_op().accept(self)] > precedence[ctx.expr_lit(0).accept(self).op] and \
+                precedence[ctx.binary_op().accept(self)] < precedence[ctx.expr_lit(1).accept(self).op]:
+                    return BinaryOp(ctx.expr_lit(0).accept(self).op, ctx.expr_lit(0).accept(self).left, BinaryOp(ctx.binary_op(), ctx.expr_lit(0).accept(self).right, ctx.expr_lit(1).accept(self)))
+
+                if precedence[ctx.binary_op().accept(self)] > precedence[ctx.expr_lit(0).accept(self).op] and \
+                precedence[ctx.binary_op().accept(self)] == precedence[ctx.expr_lit(1).accept(self).op] and \
+                precedence[ctx.binary_op(0).accept(self)] >= precedence[ctx.expr_lit(1).accept(self).op]:
+                    return BinaryOp(ctx.expr_lit(0).op, ctx.expr_lit(0).accept(self).left, BinaryOp(ctx.binary_op().accept(self), BinaryOp(ctx.expr_lit(1).accept(self).op, ctx.expr_lit(0).accept(self).right, ctx.expr_lit(1).accept(self).left),ctx.expr_lit(1).accept(self).right))
+
+
+            if isinstance(ctx.expr_lit(0).accept(self), BinaryOp) \
+            and not ctx.expr_lit(0).LB() and \
+            (isinstance(ctx.expr_lit(1).accept(self), BinaryOp) and ctx.expr_lit(1).LB() or\
+                not isinstance(ctx.expr_lit(1), BinaryOp)):
+                if precedence[ctx.binary_op().accept(self)] > precedence[ctx.expr_lit(0).accept(self).op]:
+                    return BinaryOp(ctx.expr_lit(0).accept(self).op, ctx.expr_lit(0).accept(self).left, BinaryOp(ctx.binary_op().accept(self), ctx.expr_lit(0).accept(self).right, ctx.expr_lit(1).accept(self)))
+
+
+
+
+            if isinstance(ctx.expr_lit(1).accept(self), BinaryOp) \
+            and not ctx.expr_lit(1).LB() and \
+            (isinstance(ctx.expr_lit(0).accept(self), BinaryOp) and ctx.expr_lit(0).LB() or\
+                not isinstance(ctx.expr_lit(0), BinaryOp)):
+                if precedence[ctx.binary_op().accept(self)] >= precedence[ctx.expr_lit(1).accept(self).op]:
+                    return BinaryOp(ctx.expr_lit(1).op, BinaryOp(ctx.binary_op().accept(self), ctx.expr_lit(0).accept(self), ctx.expr_lit(1).accept(self).left), ctx.expr_lit(1).accept(self).right)
+
             return BinaryOp(ctx.binary_op().accept(self), ctx.expr_lit(0).accept(self), ctx.expr_lit(1).accept(self))
+
         return ctx.getChild(1).accept(self)
 
 

@@ -83,20 +83,28 @@ expr : expr_lit
 expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr   // literal
          | expr_lit LS (expr_lit | int_gen) RS                      // index element(4)
          | expr_lit DOT ID LB para_pass_list RB                     // method invocation(6)
-         | expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB    // static method invocation(6)
-         | expr_lit DOT expr_lit                                    // attribute access(3)
+         | expr_lit DOT ID                                          // attribute access(3)
          | expr_lit MEM_ACCESS_OP DOLLAR_ID                         // static attribute access(3)
+         | expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB    // static method invocation(6)
          | unary_op expr_lit                                        // unary operator(2)
-         | expr_lit ADDOP term
-         | expr_lit SUBOP term
-         | expr_lit binary_op expr_lit                              // binary operator(3)
          | LB expr_lit RB                                           // (expr)(3)
+         | expr_lit binary_op expr_lit                              // binary operator(3)
          ;
+
+//term : term DIVOP factor
+//     | term MULOP factor
+//     ;
+//
+//factor : expr_lit
+//       | LB expr_lit RB
+//       ;
 
 binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
           | GREAT_THAN | SUBOP | MULOP | LESS_THAN | MODOP
           |DIVOP | NOT_EQUAL | EQUAL | AND | OR | STR_CMP | STR_CONCAT
-          | DOT | MEM_ACCESS_OP;
+          ;
+
+unary_op : SUBOP | NEGATE;
 
 //string_op : STR_CMP | STR_CONCAT;
 //
@@ -222,12 +230,6 @@ size : INTLIT_16 | INTLIT_2 | INTLIT_8 | INTLIT_10;
 
 array_type : ARRAY LS data_type CM size RS;
 
-unary_op : SUBOP | NEGATE;
-
-binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
-          | GREAT_THAN | SUBOP | MULOP | LESS_THAN | MODOP
-          |DIVOP | NOT_EQUAL | EQUAL | AND | OR | STR_CMP | STR_CONCAT
-          | DOT | MEM_ACCESS_OP;
 
 STRINGLIT : ('""' // Case 1: There is no character
           | '"' ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"] )* ('\'"' | '\\' [btnfr'\\] | ~[\r\t\n\\"'] )'"') {self.text = self.text[1:-1]}; // Case 2: There is at least 1 character -> The single quote can not stand at the end of string

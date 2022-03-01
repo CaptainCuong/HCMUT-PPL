@@ -251,6 +251,24 @@ class D96Listener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by D96Parser#binary_op.
+    def enterBinary_op(self, ctx:D96Parser.Binary_opContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#binary_op.
+    def exitBinary_op(self, ctx:D96Parser.Binary_opContext):
+        pass
+
+
+    # Enter a parse tree produced by D96Parser#unary_op.
+    def enterUnary_op(self, ctx:D96Parser.Unary_opContext):
+        pass
+
+    # Exit a parse tree produced by D96Parser#unary_op.
+    def exitUnary_op(self, ctx:D96Parser.Unary_opContext):
+        pass
+
+
     # Enter a parse tree produced by D96Parser#object_ini.
     def enterObject_ini(self, ctx:D96Parser.Object_iniContext):
         pass
@@ -617,24 +635,6 @@ class D96Listener(ParseTreeListener):
 
     # Exit a parse tree produced by D96Parser#array_type.
     def exitArray_type(self, ctx:D96Parser.Array_typeContext):
-        pass
-
-
-    # Enter a parse tree produced by D96Parser#unary_op.
-    def enterUnary_op(self, ctx:D96Parser.Unary_opContext):
-        pass
-
-    # Exit a parse tree produced by D96Parser#unary_op.
-    def exitUnary_op(self, ctx:D96Parser.Unary_opContext):
-        pass
-
-
-    # Enter a parse tree produced by D96Parser#binary_op.
-    def enterBinary_op(self, ctx:D96Parser.Binary_opContext):
-        pass
-
-    # Exit a parse tree produced by D96Parser#binary_op.
-    def exitBinary_op(self, ctx:D96Parser.Binary_opContext):
         pass
 
 
