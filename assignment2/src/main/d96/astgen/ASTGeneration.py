@@ -19,10 +19,14 @@ class ASTGeneration(D96Visitor):
         '''
         Return a list of MethodDecl and AttributeDecl
         '''
+        # print(ctx.parentCtx.ID(0).getText())
         if ctx.getChildCount() > 2:
             memlist = []
             for i in range(1, ctx.getChildCount()-1):
                 memlist += ctx.getChild(i).accept(self)
+                if isinstance(memlist[-1], MethodDecl) and memlist[-1].name.name == 'main' \
+                and memlist[-1].param == [] and ctx.parentCtx.ID(0).getText() == 'Program':
+                    memlist[-1].kind = Static()
             return memlist
         return []
 
@@ -60,7 +64,7 @@ class ASTGeneration(D96Visitor):
             id_list.append(Id(ctx.getChild(1).getText()))
             id_list += ctx.att_dcl_list().accept(self)['ID']
             value += ctx.att_dcl_list().accept(self)['value']
-            value.append(ctx.expr_pro().accept(self))
+            value.append(ctx.expr_lit().accept(self))
             data_type = ctx.att_dcl_list().accept(self)['data_type']
 
         def assigned_att(id_list, data_type, value):
@@ -80,13 +84,13 @@ class ASTGeneration(D96Visitor):
             ret = []
             for ID_set in id_list:
                 if VAL and ID_set.name[0] == '$':
-                    ret.append(AttributeDecl(Static(), ConstDecl(ID_set, data_type, None)))
+                    ret.append(AttributeDecl(Static(), ConstDecl(ID_set, data_type, NullLiteral() if isinstance(data_type, ClassType) else None)))
                 elif VAL:
-                    ret.append(AttributeDecl(Instance(), ConstDecl(ID_set, data_type, None)))
+                    ret.append(AttributeDecl(Instance(), ConstDecl(ID_set, data_type, NullLiteral() if isinstance(data_type, ClassType) else None)))
                 elif VAR and ID_set.name[0] == '$':
-                    ret.append(AttributeDecl(Static(), VarDecl(ID_set, data_type, None)))
+                    ret.append(AttributeDecl(Static(), VarDecl(ID_set, data_type, NullLiteral() if isinstance(data_type, ClassType) else None)))
                 elif VAR:
-                    ret.append(AttributeDecl(Instance(), VarDecl(ID_set, data_type, None)))
+                    ret.append(AttributeDecl(Instance(), VarDecl(ID_set, data_type, NullLiteral() if isinstance(data_type, ClassType) else None)))
             return ret
 
         if ASSIGNED:
@@ -105,7 +109,7 @@ class ASTGeneration(D96Visitor):
         return {
                 'ID' : [Id(ctx.getChild(1).getText())] + ctx.att_dcl_list().accept(self)['ID'],
                 'data_type' : ctx.att_dcl_list().accept(self)['data_type'],
-                'value' : ctx.att_dcl_list().accept(self)['value'] + [ctx.expr_pro().accept(self)]
+                'value' : ctx.att_dcl_list().accept(self)['value'] + [ctx.expr_lit().accept(self)]
                 }
 
 
@@ -119,7 +123,7 @@ class ASTGeneration(D96Visitor):
         body: Block
         '''
         ID = ctx.getChild(0).getText()
-        static = (ID[0] == '$' or ID == 'main')
+        static = (ID[0] == '$')
         para_lst = ctx.para_dcl_list().accept(self)
         return [MethodDecl(Static() if static else Instance(), Id(ID), ctx.para_dcl_list().accept(self), ctx.method_block().accept(self))]
 
@@ -171,18 +175,18 @@ class ASTGeneration(D96Visitor):
     # Visit a parse tree produced by D96Parser#for_in_stm.
     def visitFor_in_stm(self, ctx):
         ID = ctx.ID().getText()
-        expr_pro = ctx.expr_pro()
+        expr_lit = ctx.expr_lit()
         block = ctx.block_stm()
         if ctx.BY():
-            return For(Id(ID), expr_pro[0].accept(self), expr_pro[1].accept(self), block.accept(self), expr_pro[-1].accept(self))
-        return For(Id(ID), expr_pro[0].accept(self), expr_pro[1].accept(self), block.accept(self), None)
+            return For(Id(ID), expr_lit[0].accept(self), expr_lit[1].accept(self), block.accept(self), expr_lit[-1].accept(self))
+        return For(Id(ID), expr_lit[0].accept(self), expr_lit[1].accept(self), block.accept(self), None)
 
 
     # Visit a parse tree produced by D96Parser#if_stm.
     def visitIf_stm(self, ctx):
         if ctx.ELSE():
-            return reduce(lambda x, y: If(y[0].accept(self),y[1].accept(self),x), list(zip(ctx.expr_pro()[-2::-1], ctx.block_stm()[-3::-1])), If(ctx.expr_pro()[-1].accept(self), ctx.block_stm()[-2].accept(self), ctx.block_stm()[-1].accept(self)))
-        return reduce(lambda x, y: If(y[0].accept(self),y[1].accept(self),x), list(zip(ctx.expr_pro()[::-1], ctx.block_stm()[::-1])), None)
+            return reduce(lambda x, y: If(y[0].accept(self),y[1].accept(self),x), list(zip(ctx.expr_lit()[-2::-1], ctx.block_stm()[-3::-1])), If(ctx.expr_lit()[-1].accept(self), ctx.block_stm()[-2].accept(self), ctx.block_stm()[-1].accept(self)))
+        return reduce(lambda x, y: If(y[0].accept(self),y[1].accept(self),x), list(zip(ctx.expr_lit()[::-1], ctx.block_stm()[::-1])), None)
 
 
     # Visit a parse tree produced by D96Parser#block_stm.
@@ -211,15 +215,13 @@ class ASTGeneration(D96Visitor):
 
     # Visit a parse tree produced by D96Parser#asm_stm.
     def visitAsm_stm(self, ctx):
-        if ctx.ID():
-            return Assign(Id(ctx.ID().getText()), ctx.expr_pro().accept(self))
-        return Assign(ctx.getChild(0).accept(self), ctx.expr_pro().accept(self))
+        return Assign(ctx.expr_lit(0).accept(self), ctx.expr_lit(1).accept(self))
 
 
     # Visit a parse tree produced by D96Parser#return_stm.
     def visitReturn_stm(self, ctx):
-        if ctx.expr_pro():
-            return Return(ctx.expr_pro().accept(self))
+        if ctx.expr_lit():
+            return Return(ctx.expr_lit().accept(self))
         return Return(None)
 
 
@@ -232,12 +234,12 @@ class ASTGeneration(D96Visitor):
     def visitVar_dcl(self, ctx):
         if ctx.non_static_id_list():
             if ctx.VAL_VAR().getText() == 'Var':
-                return [VarDecl(x, ctx.data_type().accept(self)) for x in ctx.non_static_id_list().accept(self)]
-            return [ConstDecl(x, ctx.data_type().accept(self)) for x in ctx.non_static_id_list().accept(self)]
+                return [VarDecl(x, ctx.data_type().accept(self), NullLiteral() if isinstance(ctx.data_type().accept(self), ClassType) else None) for x in ctx.non_static_id_list().accept(self)]
+            return [ConstDecl(x, ctx.data_type().accept(self), NullLiteral() if isinstance(ctx.data_type().accept(self), ClassType) else None) for x in ctx.non_static_id_list().accept(self)]
         
         ids = [Id(ctx.ID().getText())] + ctx.var_dcl_list().accept(self)['ID']
         dtype = ctx.var_dcl_list().accept(self)['dtype']
-        expr = ctx.var_dcl_list().accept(self)['expr'] + [ctx.expr_pro().accept(self)]
+        expr = ctx.var_dcl_list().accept(self)['expr'] + [ctx.expr_lit().accept(self)]
         if ctx.VAL_VAR().getText() == 'Var':
             return [VarDecl(Id, dtype, Exp) for Id, Exp in zip(ids, expr)]
         return [ConstDecl(Id, dtype, Exp) for Id, Exp in zip(ids, expr)]
@@ -249,7 +251,7 @@ class ASTGeneration(D96Visitor):
             return {'ID':[], 'dtype':ctx.data_type().accept(self), 'expr': []}
         return {'ID': [Id(ctx.ID().getText())] + ctx.var_dcl_list().accept(self)['ID'],
                 'dtype': ctx.var_dcl_list().accept(self)['dtype'],
-                'expr': ctx.var_dcl_list().accept(self)['expr'] + [ctx.expr_pro().accept(self)]}
+                'expr': ctx.var_dcl_list().accept(self)['expr'] + [ctx.expr_lit().accept(self)]}
 
 
     # Visit a parse tree produced by D96Parser#expr_pro_list.
@@ -264,11 +266,6 @@ class ASTGeneration(D96Visitor):
         if ctx.getChildCount() > 0:
             return [ctx.expr_pro().accept(self)] + ctx.expr_pro_cmlist().accept(self)
         return []
-
-
-    # Visit a parse tree produced by D96Parser#expr.
-    def visitExpr(self, ctx):
-        return ctx.getChild(0).accept(self)
 
 
     # Visit a parse tree produced by D96Parser#expr_lit.
@@ -290,21 +287,26 @@ class ASTGeneration(D96Visitor):
         Index operator :  ArrayCell
         Sign : Unary
         '''
+        if ctx.NEW():
+            return NewExpr(ctx.expr_lit(0).accept(self), ctx.expr_lit_list().accept(self))
+        
         if ctx.ID() and ctx.getChildCount() == 1:
             if ctx.ID().getText() == 'Self':
                 return SelfLiteral()
             return Id(ctx.ID().getText())
+        
         if ctx.NULL() and ctx.getChildCount() == 1:
             return NullLiteral()
+        
         if ctx.getChildCount() == 1:
             return ctx.getChild(0).accept(self)
-
+        
         if ctx.getChildCount() == 4:
             left_ret = ctx.expr_lit(0).accept(self)
             if isinstance(left_ret, ArrayCell):
                 return ArrayCell(left_ret.arr, left_ret.idx+[ctx.getChild(2).accept(self)])
             return ArrayCell(ctx.expr_lit(0).accept(self), [ctx.getChild(2).accept(self)])
-        
+
         if ctx.getChildCount() == 6:
             return CallExpr(ctx.getChild(0).accept(self), Id(ctx.getChild(2).getText()), ctx.para_pass_list().accept(self))
 
@@ -363,10 +365,9 @@ class ASTGeneration(D96Visitor):
         return ctx.getChild(1).accept(self)
 
 
-    # Visit a parse tree produced by D96Parser#object_ini.
-    def visitObject_ini(self, ctx):
-        return NewExpr(ctx.expr_pro().accept(self), ctx.expr_pro_list().accept(self))
- 
+    # Visit a parse tree produced by D96Parser#expr_lit_list.
+    def visitExpr_lit_list(self, ctx):
+        return [x.accept(self) for x in ctx.expr_lit()]
 
     # Visit a parse tree produced by D96Parser#instance_method_invoke.
     def visitInstance_method_invoke(self, ctx):
@@ -417,11 +418,11 @@ class ASTGeneration(D96Visitor):
 
     # Visit a parse tree produced by D96Parser#index_ele.
     def visitIndex_ele(self, ctx):
-        expr = ctx.expr().accept(self)
+        expr = ctx.expr_lit().accept(self)
         if isinstance(expr, ArrayCell):
-            return ArrayCell(expr.arr, expr.idx + reduce(lambda x, y: x+y, [x.accept(self) for x in ctx.expr_list()], []))
+            return ArrayCell(expr.arr, expr.idx + reduce(lambda x, y: x+y, [x.accept(self) for x in ctx.expr_lit_list()], []))
 
-        return ArrayCell(expr, reduce(lambda x, y: x+y, [x.accept(self) for x in ctx.expr_list()], []))
+        return ArrayCell(expr, reduce(lambda x, y: x+y, [x.accept(self) for x in ctx.expr_lit_list()], []))
 
 
     # Visit a parse tree produced by D96Parser#expr_list.
@@ -626,8 +627,7 @@ class ASTGeneration(D96Visitor):
             return IntLiteral(int(ctx.INTLIT_8().getText()[1:], 8))
         if ctx.INTLIT_10():
             return IntLiteral(int(ctx.INTLIT_10().getText(), 10))
-        if ctx.ZERO_10():
-            return IntLiteral(0)
+        return IntLiteral(0)
 
 
     # Visit a parse tree produced by D96Parser#data_type.

@@ -10,26 +10,23 @@ options {
 
 
 program: class_dcl+ EOF;
-//program : expr_lit EOF;
 
 class_dcl : CLASS ID (CL ID)? class_body;
 
 class_body : LP (att_dcl | method_dcl)* RP;
 
-expr_pro : expr | index_ele | index_ele_pro;
+expr_pro : expr_lit | index_ele | index_ele_pro;
 
 // 'att_dcl_list' has ASSIGN_OP
 att_dcl : VAL_VAR id_list CL data_type SEMI // not assigned
-        | VAL_VAR (ID | DOLLAR_ID) att_dcl_list expr_pro SEMI; // assigned
+        | VAL_VAR (ID | DOLLAR_ID) att_dcl_list expr_lit SEMI; // assigned
 
 att_dcl_list : CL data_type ASSIGN_OP
-             | CM (ID | DOLLAR_ID) att_dcl_list expr_pro CM;
+             | CM (ID | DOLLAR_ID) att_dcl_list expr_lit CM;
 
 method_dcl : (DESTRUCTOR | CONSTRUCTOR | ID | DOLLAR_ID) LB para_dcl_list RB method_block;
 
 method_block : LP (stm | block_stm)* RP;
-
-//static_method_dcl : (DESTRUCTOR | CONSTRUCTOR | ID | DOLLAR_ID) LB para_dcl_list RB static_block_stm;
 
 para_dcl_list :
               | para_dcl para_dcl_smcllist;
@@ -43,9 +40,9 @@ stm : (asm_stm | var_dcl | break_stm | continue_stm | return_stm | method_invoke
     | if_stm | for_in_stm
     | block_stm;
 
-for_in_stm : FOREACH LB ID IN expr_pro RANGE expr_pro (BY expr_pro)? RB block_stm;
+for_in_stm : FOREACH LB ID IN expr_lit RANGE expr_lit (BY expr_lit)? RB block_stm;
 
-if_stm: IF LB expr_pro RB block_stm (ELSEIF LB expr_pro RB block_stm)* (ELSE block_stm)?;
+if_stm: IF LB expr_lit RB block_stm (ELSEIF LB expr_lit RB block_stm)* (ELSE block_stm)?;
 
 block_stm : LP mn_stm RP;
 
@@ -56,31 +53,26 @@ continue_stm : CONTINUE;
 
 break_stm : BREAK;
 
-asm_stm : (ID | att_access | index_ele | index_ele_pro) ASSIGN_OP expr_pro;
+asm_stm : expr_lit ASSIGN_OP expr_lit;
 
-return_stm : RETURN (expr_pro | );
+return_stm : RETURN (expr_lit | );
 
 method_invoke_stm : instance_method_invoke | static_mehod_invoke;
 
 var_dcl : VAL_VAR non_static_id_list CL data_type // not assigned
-        | VAL_VAR ID var_dcl_list expr_pro; // assigned
+        | VAL_VAR ID var_dcl_list expr_lit; // assigned
 
 var_dcl_list : CL data_type ASSIGN_OP
-             | CM ID var_dcl_list expr_pro CM;
+             | CM ID var_dcl_list expr_lit CM;
 
 expr_pro_list :
           | expr_pro expr_pro_cmlist;
 
 expr_pro_cmlist : | CM expr_pro expr_pro_cmlist;
 
-expr : expr_lit
-//     | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access
-//     | expr binary_op expr
-//     | unary_op expr
-//     | LB expr RB
-     ;
 
-expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr   // literal
+expr_lit : ID | NULL | lit | index_arr | mul_dim_arr                // literal
+         | NEW expr_lit LB expr_lit_list RB                         // object initializing
          | expr_lit LS (expr_lit | int_gen) RS                      // index element(4)
          | expr_lit DOT ID LB para_pass_list RB                     // method invocation(6)
          | expr_lit DOT ID                                          // attribute access(3)
@@ -91,13 +83,7 @@ expr_lit : ID | NULL | object_ini | lit | index_arr | mul_dim_arr   // literal
          | expr_lit binary_op expr_lit                              // binary operator(3)
          ;
 
-//term : term DIVOP factor
-//     | term MULOP factor
-//     ;
-//
-//factor : expr_lit
-//       | LB expr_lit RB
-//       ;
+expr_lit_list : | expr_lit (CM expr_lit)*;
 
 binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
           | GREAT_THAN | SUBOP | MULOP | LESS_THAN | MODOP
@@ -106,38 +92,13 @@ binary_op : ADDOP | LESS_EQUAL | LESS_THAN | GREAT_EQUAL
 
 unary_op : SUBOP | NEGATE;
 
-//string_op : STR_CMP | STR_CONCAT;
-//
-//bool_op : NEGATE | OR | AND | EQUAL | NOT_EQUAL;
-//
-//relation_op : LESS_THAN | NOT_EQUAL | EQUAL | GREAT_THAN;
-//
-//int_op : ADDOP | LESS_EQUAL | GREAT_EQUAL | SUBOP | MULOP | LESS_THAN | MODOP | DIVOP | NOT_EQUAL | EQUAL;
-//
-//float_op : ADDOP | LESS_EQUAL | GREAT_EQUAL | SUBOP | MULOP | LESS_THAN | NOT_EQUAL;
-
-
-//expr_no_static : ID | object_ini | lit | index_arr | mul_dim_arr
-//     | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access
-//     | expr binary_op expr
-//     | unary_op expr
-//     | LB expr RB
-//     ;
-
-object_ini : NEW expr_pro LB expr_pro_list RB;
-
 instance_method_invoke : expr_lit DOT ID LB para_pass_list RB;
 
 static_mehod_invoke : expr_lit MEM_ACCESS_OP DOLLAR_ID LB para_pass_list RB;
 
 para_pass_list : expr_pro_list;
-//               | lit_list | id_list
-//               | lit_list CM id_list;
 
 att_access : instance_att_access | static_att_access;
-
-//expr_lit : ID | object_ini | lit | index_arr | mul_dim_arr
-//     | instance_method_invoke | static_mehod_invoke | instance_att_access | static_att_access;
 
 instance_att_access : expr_lit (DOT expr_lit | MEM_ACCESS_OP DOLLAR_ID)* DOT ID;
 
@@ -145,9 +106,7 @@ static_att_access : expr_lit (DOT expr_lit | MEM_ACCESS_OP DOLLAR_ID)* MEM_ACCES
 
 index_ele_pro : ID (LS expr_pro_list RS)+ ;
 
-index_ele : expr (LS expr_list RS)+;
-
-expr_list : | expr (CM expr)*;
+index_ele : expr_lit (LS expr_lit_list RS)+;
 
 int_object : int_gen | ID | att_access;
 
@@ -222,7 +181,7 @@ string_list_cm :
 
 lit : FLOATLIT | BOOLIT | STRINGLIT | int_gen;
 
-int_gen : INTLIT_16 | INTLIT_2 | INTLIT_8 | INTLIT_10 | ZERO_10;
+int_gen : INTLIT_16 | INTLIT_2 | INTLIT_8 | INTLIT_10 | ZERO_2 | ZERO_8 | ZERO_10 | ZERO_16;
 
 data_type : INT_TYPE | FLOAT_TYPE | BOOL_TYPE | STRING_TYPE | array_type | ID;
 
