@@ -84,9 +84,9 @@ class ASTGeneration(D96Visitor):
             ret = []
             for ID_set in id_list:
                 if VAL and ID_set.name[0] == '$':
-                    ret.append(AttributeDecl(Static(), ConstDecl(ID_set, data_type, NullLiteral() if isinstance(data_type, ClassType) else None)))
+                    ret.append(AttributeDecl(Static(), ConstDecl(ID_set, data_type, None if isinstance(data_type, ClassType) else None)))
                 elif VAL:
-                    ret.append(AttributeDecl(Instance(), ConstDecl(ID_set, data_type, NullLiteral() if isinstance(data_type, ClassType) else None)))
+                    ret.append(AttributeDecl(Instance(), ConstDecl(ID_set, data_type, None if isinstance(data_type, ClassType) else None)))
                 elif VAR and ID_set.name[0] == '$':
                     ret.append(AttributeDecl(Static(), VarDecl(ID_set, data_type, NullLiteral() if isinstance(data_type, ClassType) else None)))
                 elif VAR:
@@ -235,7 +235,7 @@ class ASTGeneration(D96Visitor):
         if ctx.non_static_id_list():
             if ctx.VAL_VAR().getText() == 'Var':
                 return [VarDecl(x, ctx.data_type().accept(self), NullLiteral() if isinstance(ctx.data_type().accept(self), ClassType) else None) for x in ctx.non_static_id_list().accept(self)]
-            return [ConstDecl(x, ctx.data_type().accept(self), NullLiteral() if isinstance(ctx.data_type().accept(self), ClassType) else None) for x in ctx.non_static_id_list().accept(self)]
+            return [ConstDecl(x, ctx.data_type().accept(self), None if isinstance(ctx.data_type().accept(self), ClassType) else None) for x in ctx.non_static_id_list().accept(self)]
         
         ids = [Id(ctx.ID().getText())] + ctx.var_dcl_list().accept(self)['ID']
         dtype = ctx.var_dcl_list().accept(self)['dtype']
@@ -469,7 +469,7 @@ class ASTGeneration(D96Visitor):
 
     # Visit a parse tree produced by D96Parser#mul_dim_arr.
     def visitMul_dim_arr(self, ctx):
-        return ArrayLiteral(ctx.index_arr_list().accept(self))
+        return ArrayLiteral(ctx.expr_lit_list().accept(self))
 
 
     # Visit a parse tree produced by D96Parser#same_type_list.
@@ -606,7 +606,7 @@ class ASTGeneration(D96Visitor):
         if ctx.FLOATLIT():
             floatlit = ctx.FLOATLIT().getText()
             if floatlit[0] == '.':
-                floatlit = '0' + floatlit[1:]
+                floatlit = '0' + floatlit
             elif floatlit[0] == 'e':
                 floatlit = '0' + floatlit
             return FloatLiteral(float(floatlit))

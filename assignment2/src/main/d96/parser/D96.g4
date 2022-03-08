@@ -120,7 +120,7 @@ index_arr_cmlist :
 
 index_arr : ARRAY LB same_type_list RB;
 
-mul_dim_arr : ARRAY LB index_arr_list RB;
+mul_dim_arr : ARRAY LB expr_lit_list RB;
 
 
 

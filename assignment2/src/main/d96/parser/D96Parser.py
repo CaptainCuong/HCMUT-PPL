@@ -246,9 +246,9 @@ def serializedATN():
         buf.write("\3\2\2\2\u01f5S\3\2\2\2\u01f6\u01f7\7\30\2\2\u01f7\u01f8")
         buf.write("\7*\2\2\u01f8\u01f9\5X-\2\u01f9\u01fa\7+\2\2\u01faU\3")
         buf.write("\2\2\2\u01fb\u01fc\7\30\2\2\u01fc\u01fd\7*\2\2\u01fd\u01fe")
-        buf.write("\5P)\2\u01fe\u01ff\7+\2\2\u01ffW\3\2\2\2\u0200\u0205\5")
-        buf.write("p9\2\u0201\u0205\5t;\2\u0202\u0205\5x=\2\u0203\u0205\5")
-        buf.write("|?\2\u0204\u0200\3\2\2\2\u0204\u0201\3\2\2\2\u0204\u0202")
+        buf.write("\5\66\34\2\u01fe\u01ff\7+\2\2\u01ffW\3\2\2\2\u0200\u0205")
+        buf.write("\5p9\2\u0201\u0205\5t;\2\u0202\u0205\5x=\2\u0203\u0205")
+        buf.write("\5|?\2\u0204\u0200\3\2\2\2\u0204\u0201\3\2\2\2\u0204\u0202")
         buf.write("\3\2\2\2\u0204\u0203\3\2\2\2\u0205Y\3\2\2\2\u0206\u0207")
         buf.write("\t\6\2\2\u0207[\3\2\2\2\u0208\u0209\t\7\2\2\u0209]\3\2")
         buf.write("\2\2\u020a\u020b\t\b\2\2\u020b_\3\2\2\2\u020c\u020d\t")
@@ -3522,7 +3522,7 @@ class D96Parser ( Parser ):
             self.state = 491
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [D96Parser.RB]:
+            if token in [D96Parser.EOF]:
                 self.enterOuterAlt(localctx, 1)
 
                 pass
@@ -3583,7 +3583,7 @@ class D96Parser ( Parser ):
             self.state = 498
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [D96Parser.RB]:
+            if token in [D96Parser.EOF]:
                 self.enterOuterAlt(localctx, 1)
 
                 pass
@@ -3676,8 +3676,8 @@ class D96Parser ( Parser ):
         def LB(self):
             return self.getToken(D96Parser.LB, 0)
 
-        def index_arr_list(self):
-            return self.getTypedRuleContext(D96Parser.Index_arr_listContext,0)
+        def expr_lit_list(self):
+            return self.getTypedRuleContext(D96Parser.Expr_lit_listContext,0)
 
 
         def RB(self):
@@ -3706,7 +3706,7 @@ class D96Parser ( Parser ):
             self.state = 506
             self.match(D96Parser.LB)
             self.state = 507
-            self.index_arr_list()
+            self.expr_lit_list()
             self.state = 508
             self.match(D96Parser.RB)
         except RecognitionException as re:
