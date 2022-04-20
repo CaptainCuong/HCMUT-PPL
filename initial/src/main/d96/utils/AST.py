@@ -1,129 +1,372 @@
 from abc import ABC, abstractmethod, ABCMeta
 from Visitor import Visitor
+from dataclasses import dataclass
+from typing import List, Tuple
 
 
 class AST(ABC):
-    def __eq__(self, other): 
+    def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-    @abstractmethod
     def accept(self, v, param):
-        return v.visit(self, param)
+        method_name = 'visit{}'.format(self.__class__.__name__)
+        visit = getattr(v, method_name)
+        return visit(self, param)
 
-class Program(AST):
-    #decl:list(Decl)
-    def __init__(self, decl):
-        self.decl = decl
-    
-    def __str__(self):
-        return "Program(List(" + ','.join(str(i) for i in self.decl) + "))"
-    
-    def accept(self, v: Visitor, param):
-        return v.visitProgram(self, param)
-
-class Decl(AST):
+class Inst(AST):
     __metaclass__ = ABCMeta
     pass
 
-class FuncDecl(Decl):
-    #name: Id
-    #param: list(VarDecl)
-    #returnType: Type
-    #body: Block
-    def __init__(self, name, param, returnType, body):
-        self.name = name
-        self.param = param
-        self.returnType = returnType
-        self.body = body
-
-    def __str__(self):
-        return "FuncDecl(" + str(self.name) + ",List(" +  ','.join(str(i) for i in self.param) + ")," + str(self.returnType) + "," + str(self.body) + ")"
-    
-    def accept(self, v, param):
-        return v.visitFuncDecl(self, param)
-
-class Type(AST):
+class Stmt(Inst):
     __metaclass__ = ABCMeta
     pass
 
-class IntType(Type):
-    def __str__(self):
-        return "IntType"
-
-    def accept(self, v, param):
-        return v.visitIntType(self, param)
-
-class VoidType(Type):
-    def __str__(self):
-        return "VoidType"
-
-    def accept(self, v, param):
-        return v.visitVoidType(self, param)
-
-class Stmt(AST):
-    __metaclass__ = ABCMeta
-    pass
 
 class Expr(Stmt):
     __metaclass__ = ABCMeta
     pass
-
-class CallExpr(Expr):
-    #method:Id
-    #param:list(Expr)
-    def __init__(self, method, param):
-        self.method = method
-        self.param = param
-
-    def __str__(self):
-        return "CallExpr(" + str(self.method) + ",List(" +  ','.join(str(i) for i in self.param) + "))"
-
-    def accept(self, v, param):
-        return v.visitCallExpr(self, param)
-
 
 
 class LHS(Expr):
     __metaclass__ = ABCMeta
     pass
 
+
+class Type(AST):
+    __metaclass__ = ABCMeta
+    pass
+
+
+class MemDecl(AST):
+    __metaclass__ = ABCMeta
+    pass
+
+
+@dataclass
 class Id(LHS):
-    #name:string
-    def __init__(self, name):
-        self.name = name
+    name: str
 
     def __str__(self):
         return "Id(" + self.name + ")"
 
-    def accept(self, v, param):
-        return v.visitId(self, param)
 
-class Block(Stmt):
-    #decl:list(VarDecl)
-    #stmt:list(Stmt)
-    def __init__(self, decl, stmt):
-        self.decl = decl
-        self.stmt = stmt
+# used for binary expression
+@dataclass
+class BinaryOp(Expr):
+    op: str
+    left: Expr
+    right: Expr
 
     def __str__(self):
-        return "Block(List(" + ','.join(str(i) for i in self.decl) + "),List(" + ','.join(str(i) for i in self.stmt) + "))"
+        return "BinaryOp(" + self.op + "," + str(self.left) + "," + str(self.right) + ")"
 
-    def accept(self, v, param):
-        return v.visitBlock(self, param)
+# used for unary expression with orerand like !,+,-
+
+
+@dataclass
+class UnaryOp(Expr):
+    op: str
+    body: Expr
+
+    def __str__(self):
+        return "UnaryOp(" + self.op + "," + str(self.body) + ")"
+
+
+@dataclass
+class CallExpr(Expr):
+    obj: Expr
+    method: Id
+    param: List[Expr]
+
+    def __str__(self):
+        return "CallExpr(" + str(self.obj) + "," + str(self.method) + ",[" + ','.join(str(i) for i in self.param) + "])"
+
+
+@dataclass
+class NewExpr(Expr):
+    classname: Id
+    param: List[Expr]
+
+    def __str__(self):
+        return "NewExpr(" + str(self.classname) + ",[" + ','.join(str(i) for i in self.param) + "])"
+
+
+@dataclass
+class ArrayCell(LHS):
+    arr: Expr
+    idx: List[Expr]
+
+    def __str__(self):
+        return "ArrayCell(" + str(self.arr) + ",[" + ','.join(str(i) for i in self.idx) + "])"
+
+
+@dataclass
+class FieldAccess(LHS):
+    obj: Expr
+    fieldname: Id
+
+    def __str__(self):
+        return "FieldAccess(" + str(self.obj) + "," + str(self.fieldname) + ")"
 
 
 class Literal(Expr):
     __metaclass__ = ABCMeta
     pass
 
+
+@dataclass
 class IntLiteral(Literal):
-    #value:int
-    def __init__(self, value):
-        self.value = value
+    value: int
 
     def __str__(self):
-        return "IntLiteral(" + str(self.value) + ")"
+        return "IntLit(" + str(self.value) + ")"
 
-    def accept(self, v, param):
-        return v.visitIntLiteral(self, param)
 
+@dataclass
+class FloatLiteral(Literal):
+    value: float
+
+    def __str__(self):
+        return "FloatLit(" + str(self.value) + ")"
+
+
+@dataclass
+class StringLiteral(Literal):
+    value: str
+
+    def __str__(self):
+        return "StringLit(" + self.value + ")"
+
+
+@dataclass
+class BooleanLiteral(Literal):
+    value: bool
+
+    def __str__(self):
+        return "BooleanLit(" + str(self.value) + ")"
+
+
+class NullLiteral(Literal):
+    def __str__(self):
+        return "NullLiteral()"
+
+
+class SelfLiteral(Literal):
+    def __str__(self):
+        return "Self()"
+
+
+@dataclass
+class ArrayLiteral(Literal):
+    value: List[Expr]
+
+    def __str__(self):
+        return '[' + ','.join(str(i) for i in self.value) + ']'
+
+
+class Decl(AST):
+    __metaclass__ = ABCMeta
+    pass
+
+
+class StoreDecl(Inst):
+    __metaclass__ = ABCMeta
+    pass
+
+
+@dataclass
+class Assign(Stmt):
+    lhs: Expr
+    exp: Expr
+
+    def __str__(self):
+        return "AssignStmt(" + str(self.lhs) + "," + str(self.exp) + ")"
+
+
+@dataclass
+class If(Stmt):
+    expr: Expr
+    thenStmt: Stmt
+    elseStmt: Stmt = None  # None if there is no else branch
+
+    def __str__(self):
+        return "If(" + str(self.expr) + "," + str(self.thenStmt) + (("," + str(self.elseStmt)) if self.elseStmt else "") + ")"
+
+
+@dataclass
+class For(Stmt):
+    id: Id
+    expr1: Expr
+    expr2: Expr 
+    loop: Stmt
+    expr3: Expr = None
+
+    def __str__(self):
+        return "For(" + str(self.id) + "," + str(self.expr1) + "," + str(self.expr2) + ("," + str(self.expr3) if self.expr3 else "") + "," + str(self.loop) + "])"
+
+
+class Break(Stmt):
+    def __str__(self):
+        return "Break"
+
+
+class Continue(Stmt):
+    def __str__(self):
+        return "Continue"
+
+
+@dataclass
+class Return(Stmt):
+    expr: Expr = None
+
+    def __str__(self):
+        return "Return(" + (str(self.expr) if self.expr else "") + ")"
+
+
+@dataclass
+class CallStmt(Stmt):
+    obj: Expr
+    method: Id
+    param: List[Expr]
+
+    def __str__(self):
+        return "Call(" + str(self.obj) + "," + str(self.method) + ",[" + ','.join(str(i) for i in self.param) + "])"
+
+# used for local variable or parameter declaration
+
+
+@dataclass
+class VarDecl(StoreDecl):
+    variable: Id
+    varType: Type
+    varInit: Expr = None  # None if there is no initial
+
+    def __str__(self):
+        return "VarDecl(" + str(self.variable) + "," + str(self.varType) + ("," + str(self.varInit) if self.varInit else "") + ")"
+
+    def toParam(self):
+        return "param(" + str(self.variable) + "," + str(self.varType) + ")"
+
+
+@dataclass
+class Block(Stmt):
+    inst: List[Inst]
+
+    def __str__(self):
+        return "Block([" + ','.join(str(i) for i in self.inst) + "])"
+
+
+# used for local constant declaration
+@dataclass
+class ConstDecl(StoreDecl):
+    constant: Id
+    constType: Type
+    value: Expr = None # None if there is no initial
+
+    def __str__(self):
+        return "ConstDecl(" + str(self.constant) + "," + str(self.constType) + "," + str(self.value) + ")"
+
+
+# used for a class declaration
+@dataclass
+class ClassDecl(Decl):
+    classname: Id
+    memlist: List[MemDecl]
+    parentname: Id = None  # None if there is no parent
+
+    def __str__(self):
+        return "ClassDecl(" + str(self.classname) + (("," + str(self.parentname)) if self.parentname else "") + ",[" + ','.join(str(i) for i in self.memlist) + "])"
+
+
+class SIKind(AST):
+    __metaclass__ = ABCMeta
+
+# used for instance member
+
+
+class Instance(SIKind):
+    def __str__(self):
+        return "Instance"
+
+# used for static member
+
+
+class Static(SIKind):
+    def __str__(self):
+        return "Static"
+
+# used for a special or normal method declaration.
+# In the case of special method declaration, the name will be Id("Constructor") for Constructor or Id("Destructor") for Destructor.
+# In the case of normal method declaration, the name is from the declaration.
+
+
+@dataclass
+class MethodDecl(MemDecl):
+    kind: SIKind
+    name: Id
+    param: List[VarDecl]
+    body: Block
+
+    def __str__(self):
+        return "MethodDecl(" + str(self.name) + ',' + str(self.kind) + ",[" + ','.join(i.toParam() for i in self.param) + "]," + str(self.body) + ")"
+# used for mutable (variable) or immutable (constant) declaration
+
+
+@dataclass
+class AttributeDecl(MemDecl):
+    kind: SIKind  # Instance or Static
+    decl: StoreDecl  # VarDecl for mutable or ConstDecl for immutable
+
+    def __str__(self):
+        return "AttributeDecl(" + str(self.kind) + ',' + str(self.decl) + ")"
+
+
+class IntType(Type):
+    def __str__(self):
+        return "IntType"
+
+
+class FloatType(Type):
+    def __str__(self):
+        return "FloatType"
+
+
+class BoolType(Type):
+    def __str__(self):
+        return "BoolType"
+
+
+class StringType(Type):
+    def __str__(self):
+        return "StringType"
+
+
+@dataclass
+class ArrayType(Type):
+    size: int
+    eleType: Type
+
+    def __str__(self):
+        return "ArrayType(" + str(self.size) + "," + str(self.eleType) + ")"
+
+
+@dataclass
+class ClassType(Type):
+    classname: Id
+
+    def __str__(self):
+        return "ClassType(" + str(self.classname) + ")"
+
+
+class VoidType(Type):
+    def __str__(self):
+        return "VoidType"
+
+
+# used for whole program
+@dataclass
+class Program(AST):
+    decl: List[ClassDecl]
+
+    def __str__(self):
+        return "Program([" + ','.join(str(i) for i in self.decl) + "])"

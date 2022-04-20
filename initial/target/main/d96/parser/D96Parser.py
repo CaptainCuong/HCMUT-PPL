@@ -1,4 +1,4 @@
-# Generated from /Users/duytran/Desktop/212/ppl/assignment/initial/src/main/d96/parser/D96.g4 by ANTLR 4.8
+# Generated from main/d96/parser/D96.g4 by ANTLR 4.9.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -432,7 +432,7 @@ class D96Parser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.8")
+        self.checkVersion("4.9.2")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -440,6 +440,7 @@ class D96Parser ( Parser ):
 
 
     class ProgramContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -454,6 +455,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_program
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitProgram" ):
+                return visitor.visitProgram(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -478,6 +485,7 @@ class D96Parser ( Parser ):
 
 
     class ClassdeclsContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -493,6 +501,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_classdecls
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitClassdecls" ):
+                return visitor.visitClassdecls(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -530,6 +544,7 @@ class D96Parser ( Parser ):
 
 
     class ClassdeclContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -557,6 +572,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_classdecl
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitClassdecl" ):
+                return visitor.visitClassdecl(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -609,6 +630,7 @@ class D96Parser ( Parser ):
 
 
     class SuperclassContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -622,6 +644,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_superclass
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSuperclass" ):
+                return visitor.visitSuperclass(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -646,6 +674,7 @@ class D96Parser ( Parser ):
 
 
     class MemberlistContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -661,6 +690,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_memberlist
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMemberlist" ):
+                return visitor.visitMemberlist(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -698,6 +733,7 @@ class D96Parser ( Parser ):
 
 
     class MemberContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -713,6 +749,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_member
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMember" ):
+                return visitor.visitMember(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -748,6 +790,7 @@ class D96Parser ( Parser ):
 
 
     class AttrContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -780,6 +823,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_attr
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAttr" ):
+                return visitor.visitAttr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -824,6 +873,7 @@ class D96Parser ( Parser ):
 
 
     class AttrtypeContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -837,6 +887,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_attrtype
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAttrtype" ):
+                return visitor.visitAttrtype(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -865,6 +921,7 @@ class D96Parser ( Parser ):
 
 
     class IdlistContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -885,6 +942,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_idlist
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIdlist" ):
+                return visitor.visitIdlist(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -935,6 +998,7 @@ class D96Parser ( Parser ):
 
 
     class TypContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -961,6 +1025,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_typ
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTyp" ):
+                return visitor.visitTyp(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1016,6 +1086,7 @@ class D96Parser ( Parser ):
 
 
     class ExprlistContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1034,6 +1105,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exprlist
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExprlist" ):
+                return visitor.visitExprlist(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1073,6 +1150,7 @@ class D96Parser ( Parser ):
 
 
     class ExprContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1093,6 +1171,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_expr
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpr" ):
+                return visitor.visitExpr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1138,6 +1222,7 @@ class D96Parser ( Parser ):
 
 
     class Exp1Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1170,6 +1255,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp1
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp1" ):
+                return visitor.visitExp1(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1215,6 +1306,7 @@ class D96Parser ( Parser ):
 
 
     class Exp2Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1236,6 +1328,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp2
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp2" ):
+                return visitor.visitExp2(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1289,6 +1387,7 @@ class D96Parser ( Parser ):
 
 
     class Exp3Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1310,6 +1409,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp3
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp3" ):
+                return visitor.visitExp3(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1363,6 +1468,7 @@ class D96Parser ( Parser ):
 
 
     class Exp4Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1387,6 +1493,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp4
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp4" ):
+                return visitor.visitExp4(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1440,6 +1552,7 @@ class D96Parser ( Parser ):
 
 
     class Exp5Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1458,6 +1571,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp5
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp5" ):
+                return visitor.visitExp5(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1495,6 +1614,7 @@ class D96Parser ( Parser ):
 
 
     class Exp6Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1513,6 +1633,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp6
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp6" ):
+                return visitor.visitExp6(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1550,6 +1676,7 @@ class D96Parser ( Parser ):
 
 
     class Exp7Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1571,6 +1698,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp7
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp7" ):
+                return visitor.visitExp7(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1622,6 +1755,7 @@ class D96Parser ( Parser ):
 
 
     class Exp8Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1640,6 +1774,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp8
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp8" ):
+                return visitor.visitExp8(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1687,6 +1827,7 @@ class D96Parser ( Parser ):
 
 
     class Exp9Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1708,6 +1849,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp9
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp9" ):
+                return visitor.visitExp9(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1755,6 +1902,7 @@ class D96Parser ( Parser ):
 
 
     class Exp10Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1776,6 +1924,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp10
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp10" ):
+                return visitor.visitExp10(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1815,6 +1969,7 @@ class D96Parser ( Parser ):
 
 
     class Exp11Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1895,6 +2050,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_exp11
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExp11" ):
+                return visitor.visitExp11(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2046,6 +2207,7 @@ class D96Parser ( Parser ):
 
 
     class CallContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2066,6 +2228,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_call
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCall" ):
+                return visitor.visitCall(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2104,6 +2272,7 @@ class D96Parser ( Parser ):
 
 
     class MethodContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2137,6 +2306,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_method
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMethod" ):
+                return visitor.visitMethod(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2183,6 +2358,7 @@ class D96Parser ( Parser ):
 
 
     class ParamlistContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2201,6 +2377,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_paramlist
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParamlist" ):
+                return visitor.visitParamlist(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2240,6 +2422,7 @@ class D96Parser ( Parser ):
 
 
     class ParamContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2258,6 +2441,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_param
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParam" ):
+                return visitor.visitParam(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2284,6 +2473,7 @@ class D96Parser ( Parser ):
 
 
     class BlockstateContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2301,6 +2491,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_blockstate
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBlockstate" ):
+                return visitor.visitBlockstate(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2337,6 +2533,7 @@ class D96Parser ( Parser ):
 
 
     class StatementsContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2352,6 +2549,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_statements
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitStatements" ):
+                return visitor.visitStatements(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2389,6 +2592,7 @@ class D96Parser ( Parser ):
 
 
     class StaContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2428,6 +2632,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_sta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSta" ):
+                return visitor.visitSta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2499,6 +2709,7 @@ class D96Parser ( Parser ):
 
 
     class LhsContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2534,6 +2745,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_lhs
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLhs" ):
+                return visitor.visitLhs(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2589,6 +2806,7 @@ class D96Parser ( Parser ):
 
 
     class IfstaContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2623,6 +2841,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_ifsta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIfsta" ):
+                return visitor.visitIfsta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2679,6 +2903,7 @@ class D96Parser ( Parser ):
 
 
     class EliflistContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2707,6 +2932,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_eliflist
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEliflist" ):
+                return visitor.visitEliflist(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2751,6 +2982,7 @@ class D96Parser ( Parser ):
 
 
     class ForstaContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2789,6 +3021,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_forsta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitForsta" ):
+                return visitor.visitForsta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2847,6 +3085,7 @@ class D96Parser ( Parser ):
 
 
     class BreakstaContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2860,6 +3099,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_breaksta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBreaksta" ):
+                return visitor.visitBreaksta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2884,6 +3129,7 @@ class D96Parser ( Parser ):
 
 
     class ContinuestaContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2897,6 +3143,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_continuesta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitContinuesta" ):
+                return visitor.visitContinuesta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2921,6 +3173,7 @@ class D96Parser ( Parser ):
 
 
     class ReturnstaContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2938,6 +3191,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_returnsta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitReturnsta" ):
+                return visitor.visitReturnsta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2964,6 +3223,7 @@ class D96Parser ( Parser ):
 
 
     class MethodstaContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -2982,6 +3242,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_methodsta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMethodsta" ):
+                return visitor.visitMethodsta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3018,6 +3284,7 @@ class D96Parser ( Parser ):
 
 
     class IndexedarrContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3038,6 +3305,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_indexedarr
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIndexedarr" ):
+                return visitor.visitIndexedarr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3066,6 +3339,7 @@ class D96Parser ( Parser ):
 
 
     class LiteralsContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3084,6 +3358,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_literals
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLiterals" ):
+                return visitor.visitLiterals(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3123,6 +3403,7 @@ class D96Parser ( Parser ):
 
 
     class LitContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3145,6 +3426,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_lit
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLit" ):
+                return visitor.visitLit(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3173,6 +3460,7 @@ class D96Parser ( Parser ):
 
 
     class MultiarrContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3193,6 +3481,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_multiarr
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMultiarr" ):
+                return visitor.visitMultiarr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3221,6 +3515,7 @@ class D96Parser ( Parser ):
 
 
     class ArrlistContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3239,6 +3534,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_arrlist
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitArrlist" ):
+                return visitor.visitArrlist(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3278,6 +3579,7 @@ class D96Parser ( Parser ):
 
 
     class ArrContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3293,6 +3595,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_arr
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitArr" ):
+                return visitor.visitArr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3328,6 +3636,7 @@ class D96Parser ( Parser ):
 
 
     class ArrdeclContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3355,6 +3664,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_arrdecl
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitArrdecl" ):
+                return visitor.visitArrdecl(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3387,6 +3702,7 @@ class D96Parser ( Parser ):
 
 
     class ElementContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3410,6 +3726,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_element
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitElement" ):
+                return visitor.visitElement(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3460,6 +3782,7 @@ class D96Parser ( Parser ):
 
 
     class SizeContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3470,6 +3793,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_size
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSize" ):
+                return visitor.visitSize(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3492,6 +3821,7 @@ class D96Parser ( Parser ):
 
 
     class EleexpContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3506,6 +3836,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_eleexp
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEleexp" ):
+                return visitor.visitEleexp(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3530,6 +3866,7 @@ class D96Parser ( Parser ):
 
 
     class IndexopContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3551,6 +3888,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_indexop
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIndexop" ):
+                return visitor.visitIndexop(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3596,6 +3939,7 @@ class D96Parser ( Parser ):
 
 
     class InstanceContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3612,6 +3956,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_instance
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInstance" ):
+                return visitor.visitInstance(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3638,6 +3988,7 @@ class D96Parser ( Parser ):
 
 
     class StaatrContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3654,6 +4005,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_staatr
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitStaatr" ):
+                return visitor.visitStaatr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3680,6 +4037,7 @@ class D96Parser ( Parser ):
 
 
     class ImethodiContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3706,6 +4064,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_imethodi
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitImethodi" ):
+                return visitor.visitImethodi(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3748,6 +4112,7 @@ class D96Parser ( Parser ):
 
 
     class SmethodiContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3774,6 +4139,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_smethodi
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSmethodi" ):
+                return visitor.visitSmethodi(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -3816,6 +4187,7 @@ class D96Parser ( Parser ):
 
 
     class ObjcreateContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -3839,6 +4211,12 @@ class D96Parser ( Parser ):
 
         def getRuleIndex(self):
             return D96Parser.RULE_objcreate
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitObjcreate" ):
+                return visitor.visitObjcreate(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
