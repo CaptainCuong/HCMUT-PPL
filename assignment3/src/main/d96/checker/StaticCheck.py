@@ -19,10 +19,11 @@ class Symbol:
         self.value = value
 
 class Attribute_Check:
-    def __init__(self, name:str, typ:Type, isStatic = False):
+    def __init__(self, name:str, typ:Type, isStatic = False, constant = False):
         self.name = name
         self.type = typ
         self.isStatic = isStatic
+        self.constant = constant
 
 class Variable_Check:
     def __init__(self,name,typ,scope, constant=False):
@@ -39,86 +40,39 @@ class Variable_Check:
     def get_type(self):
         return self.typ
 
-class Type_Handler:
-    
-    def __init__(self, expr):
-        if isinstance(expr, Method_Check) or isinstance(expr, Variable_Check):
-            self.type = expr.get_type()
-        elif isinstance(expr, BinaryOp):
-            type1 = Type_Handler(expr.left).get_type()
-            type2 = Type_Handler(expr.right).get_type()
-            if expr.op in ['+','-','*','/']:
-                if type(type1) not in [IntType, FloatType] or type(type2) not in [IntType, FloatType]:
-                    raise TypeMismatchInExpression(expr)
-                if type(type1) is IntType and type(type2) is IntType:
-                    self.type = IntType()
-                self.type = FloatType()
-
-            if expr.op in ['<','<=','>','>=']:
-                if type(type1) not in [IntType, FloatType] or type(type2) not in [IntType, FloatType]:
-                    raise TypeMismatchInExpression(expr)
-                self.type = BoolType()
-
-        elif isinstance(expr, UnaryOp):
-            typ = Type_Handler(expr.body).get_type()
-            if expr.op in ['-']:
-                if type(typ) not in [FloatType,IntType]:
-                    raise TypeMismatchInExpression(expr)
-                elif:
-                    self.type = typ
-            elif expr.op in ['!']:
-                if type(typ) not in [BoolType]:
-                    raise TypeMismatchInExpression(expr)
-                elif:
-                    self.type = typ
-
-        elif isinstance(expr, CallExpr):
-
-
-        elif isinstance(expr, NewExpr):
-
-        elif isinstance(expr, IntLiteral):
-            self.type = IntType()
-        elif isinstance(expr, FloatLiteral):
-            self.type = FloatType()
-        elif isinstance(expr, StringLiteral):
-            self.type = StringType()
-        elif isinstance(expr, BooleanLiteral):
-            self.type = BoolType()
-        elif isinstance(expr, NullLiteral):
-            
-        elif isinstance(expr, SelfLiteral):
-
-        elif isinstance(expr, ArrayLiteral):
-
-
-    def get_type(self):
-        return self.type
-
-
-
 class Method_Check:
-    def __init__(self, clsname:str, method_name:str, paratype:List[VarDecl], rettype=None):
+    def __init__(self, method_name:str, static=False, para:List[VarDecl]=[], rettype=None):
         self.clsname = clsname
         self.name = method_name
         self.paratype = list(map(lambda x: x.varType, paratype))
         self.rettype = rettype
-        self.scope = 0
+        self.isStatic = static
+        self.inLoop = 0
         self.variable = {}
+        self.scope = 1
+        for var in para:
+            self.var_decl(var.variable.name,var.varType)
+        self.scope = 0
 
     def __eq__(self, other):
         if isinstance(other, Method_Check):
             return self.clsname == other.name and self.name == method_name and self.paratype == other.paratype
         return self.clsname == other.cls
 
-    def _enterScope(self):
+    def enterScope(self):
         self.scope += 1
 
-    def _exitScope(self):
+    def exitScope(self):
         self.scope -= 1
-        for k, lst in self.id.items():
-            if lst[-1][1] > self.currScope:
+        for k, lst in self.variable.items():
+            if lst[-1].scope > self.scope:
                 self.id[k].pop()
+
+    def enterLoop(self):
+        self.inLoop += 1
+
+    def exitLoop(self):
+        self.inLoop -= 1  
 
     def _change_ret_type(self, rettype):
         self.rettype = rettype
@@ -128,8 +82,10 @@ class Method_Check:
             if self.variable[name][-1].scope == self.scope:
                 raise Redeclared(Variable(),name)
 
-    def _check_type(self, first_expr, second_expr):
-         
+    def _check_undeclared_variable(self, name):
+        if name in self.variable:
+            if self.variable[name][-1].scope == self.scope:
+                raise Undeclared(Variable(),name)
 
     def _checkmain(self):
         return name == 'main'
@@ -151,33 +107,44 @@ class Method_Check:
         else:
             self.variable[name] += [Variable_Check(name,typ,self.scope,True)]
 
-    def assign_stmt(self):
+    # def assign_stmt(self, stmt):
+    #     if type(stmt.lhs) in [BinaryOp,UnaryOp,NewExpr,IntLiteral,FloatLiteral,StringLiteral,BooleanLiteral]:
+    #         tyepl = TypeHandler(stmt.lhs).get_type()
+    #     elif type(stmt.lhs) in [CallExpr]:
+    #         if type(stmt.lhs.obj) is Id:
+    #             if stmt.lhs.obj.name not in self.variable:
+    #                 raise Undeclared(Identifier(),stmt.lhs.obj.name)
+    #     elif type(stmt.lhs) in [Id,ArrayCell,FieldAccess]:
+            
+    #     if type(stmt.rhs) in [BinaryOp,UnaryOp,NewExpr,IntLiteral,FloatLiteral,StringLiteral,BooleanLiteral]
+    #         tyepr = TypeHandler(stmt.rhs).get_type()
 
+    # def if_stmt(self, stmt):
 
-    def if_stmt(self):
+    # def for_stmt(self, stmt):
 
-    def for_stmt(self):
+    # def break_stmt(self, stmt):
 
-    def break_stmt(self):
+    # def continue_stmt(self, stmt):
 
-    def continue_stmt(self):
+    # def return_stmt(self, stmt):
 
-    def return_stmt(self):
+    # def call_stmt(self, stmt):
 
-    def call_stmt(self):
+    # def vardecl_store(self, storedecl):
 
-    def block_stmt(self):
+    # def constdecl_store(self, storedecl):
 
 
 
 class Class_Check:
-    def __init__(self, name:str, inherited:Class_Check = None):
+    def __init__(self, name:str, inherited = None):
         '''
         name : str
         inherited : Class_Check
         '''
-        self.att = []
-        self.method = []
+        self.att = {}
+        self.method = {}
         self.mro = []
         self.name = name
         if inherited:
@@ -185,23 +152,31 @@ class Class_Check:
             self.method = inherited.method.copy()
             self.mro = [inherited.name] + inherited.mro.copy()
 
-    def add_attribute(self, name:str, att_type:Type):
+    def add_attribute(self, name:str, att_type:Type, isStatic=False, const=False):
         self._check_redeclared_attribute(name)
-        self.att.append(Attribute_Check(name),att_type)
+        self.att[name] = Attribute_Check(name,att_type,isStatic,const)
 
-    def add_method(self, name:str, paratype:List[VarDecl], rettype=None):
+    def add_method(self, name:str, isStatic=False, paratype:List[VarDecl]=[], rettype=None):
         self._check_redeclared_method(name, typelst)
-        self.method.append(Method_Check(self.name,name,paratype,rettype))
+        self.method[name] = Method_Check(name,isStatic,paratype,rettype)
+
+    def get_method(self, method_name:str):
+        if method_name not in self.method.keys(): raise Undeclared(Method(),method_name)
+        return self.method[method_name]
+
+    def get_attribute(self, att_name:str):
+        if att_name not in self.att.keys(): raise Undeclared(Attribute(),att_name)
+        return self.att[att_name]
 
     def checkentry(self):
         return any([x.checkmain() for x in self.method] if self.method else [False])
 
-    def _check_redeclared_method(self, name, typelst:List[VarDecl]):
-        if any(map(lambda x: x.name == name and x.paratype == list(map(lambda x: x.varType, typelst)), self.method)):
+    def _check_redeclared_method(self, name:str, typelst:List[VarDecl]):
+        if name in self.method.keys() and self.method[name].paratype == list(map(lambda x: x.varType,typelst)):
             raise Redeclared(Method(), name)
 
-    def _check_redeclared_attribute(self, name):
-        if any(map(lambda x: x.name == name, self.att)):
+    def _check_redeclared_attribute(self, name:str):
+        if name in self.att:
             raise Redeclared(Attribute(),name)
 
 class ClassManager:
@@ -214,15 +189,18 @@ class ClassManager:
     def add_class(self, cls_name:str, inherited:str):
         self._check_redeclared_class(name)
         self._check_undeclared_class(inherited)
-        self.objid = Class_Check(name, self.onjid[inherited])
+        self.objid[cls_name] = Class_Check(name, self.objid[inherited])
 
-    def add_method(self, cls_name:str, method_name:str, paratype:List[VarDecl], rettype = None):
+    def add_method(self, cls_name:str, method_name:str, isStatic=False, paratype:List[VarDecl]=[], rettype = None):
         self._check_undeclared_class(cls_name)
-        self.objid[cls_name].add_method(method_name, paratype, rettype)
+        self.objid[cls_name].add_method(method_name, isStatic, paratype, rettype)
 
-    def add_attribute(self, cls_name:str, att_name:str,att_type:Type):
+    def add_attribute(self, cls_name:str, att_name:str,att_type:Type,isStatic:bool,const:bool):
         self._check_undeclared_class(cls_name)
-        self.objid[cls_name].add_attribute(att_name,att_type)
+        self.objid[cls_name].add_attribute(att_name,att_type,isStatic,const)
+
+    def get_class(self, class_name:str):
+        return self.objid[class_name]
 
     def checkentry(self):
         if not any([x.checkentry() for x in self.objid.values()]):
@@ -239,10 +217,10 @@ class ClassManager:
 
 class StaticChecker(BaseVisitor,Utils):
 
-    global_envi = [
-    Symbol("getInt",MType([],IntType())),
-    Symbol("putIntLn",MType([IntType()],VoidType()))
-    ]
+    # global_envi = [
+    # Symbol("getInt",MType([],IntType())),
+    # Symbol("putIntLn",MType([IntType()],VoidType()))
+    # ]
             
     
     def __init__(self,ast):
@@ -281,7 +259,7 @@ class StaticChecker(BaseVisitor,Utils):
             self.visitNullLiteral(ast, c)
         elif isinstance(ast, SelfLiteral):
             self.visitSelfLiteral(ast, c)
-        elif isinstanceArrayLiteral(ast, ArrayLiteral):
+        elif isinstance(ast, ArrayLiteral):
             self.visitArrayLiteral(ast, c)
         elif isinstance(ast, Assign):
             self.visitAssign(ast, c)
@@ -331,140 +309,254 @@ class StaticChecker(BaseVisitor,Utils):
             self.visitProgram(ast, c)
 
     def check(self):
-        self.idhandler = IdHandler()
-        self.classhelper = ClassHelper()
-        return self.visit(self.ast,StaticChecker.global_envi)
+        return self.visit(self.ast,None)
 
-    def visitProgram(self,ast, c):
+    def visitProgram(self,ast, c=None):
         self.classmng = ClassManager()
-        [self.visit(x) for x in ast.decl]
+        [self.visit(x,c) for x in ast.decl]
         if not self.classmng.checkentry():
             raise NoEntryPoint()
 
-    def visitFuncDecl(self,ast, c) -> ClassHelper:
-        return ClassHelper()
-    
+######################    Decl    ######################
 
-    def visitCallExpr(self, ast, c): 
-        at = [self.visit(x,(c[0],False)) for x in ast.param]
-        
-        res = self.lookup(ast.method.name,c[0],lambda x: x.name)
-        if res is None or not type(res.mtype) is MType:
-            raise Undeclared(Function(),ast.method.name)
-        elif len(res.mtype.partype) != len(at):
-            if c[1]:
-                raise TypeMismatchInStatement(ast)
-            else:
-                raise TypeMismatchInExpression(ast)
+    def visitClassDecl(self, ast:ClassDecl, c=None):
+        self.classmng.add_class(ast.classname,ast.parentname)
+        [self.visit(x,self.classmng.get_class(ast.classname)) for x in ast.memlist]
+
+######################    MemDecl    ######################
+
+    def visitAttributeDecl(self, ast, c:Class_Check):
+        # c:Class_Check
+        class_ = c
+        static = self.visit(ast.kind)
+        const = type(ast.decl) is ConstDecl
+        if type(ast.decl) is ConstDecl:
+            typ = ast.decl.constType
+            att_name = ast.decl.constant.name
         else:
-            return res.mtype.rettype
+            typ = ast.decl.varType
+            att_name = ast.decl.variable.name
+        class_.add_attribute(att_name,ast.typ,static,const)
 
-    def visitAST(self, ast, c):
-        pass
-    def visitInst(self, ast, c):
-        pass
-    def visitStmt(self, ast, c):
-        pass
-    def visitExpr(self, ast, c):
-        pass
-    def visitLHS(self, ast, c):
-        pass
-    def visitType(self, ast, c):
-        pass
-    def visitMemDecl(self, ast, c):
-        pass
-    def visitId(self, ast, c):
-        pass
-    def visitBinaryOp(self, ast, c):
-        raise TypeMismatchInExpression()
-    def visitUnaryOp(self, ast, c):
-        raise TypeMismatchInExpression()
-    def visitCallExpr(self, ast, c):
-        pass
-    def visitNewExpr(self, ast, c):
-        pass
-    def visitArrayCell(self, ast, c):
-        raise IllegalArrayLiteral()
-        raise TypeMismatchInExpression()
-    def visitFieldAccess(self, ast, c):
-        raise IllegalMemberAccess()
-    def visitLiteral(self, ast, c):
-        pass
-    def visitIntLiteral(self, ast, c):
-        pass
-    def visitFloatLiteral(self, ast, c):
-        pass
-    def visitStringLiteral(self, ast, c):
-        pass
-    def visitBooleanLiteral(self, ast, c):
-        pass
-    def visitNullLiteral(self, ast, c):
-        pass
-    def visitSelfLiteral(self, ast, c):
-        pass
-    def visitArrayLiteral(self, ast, c):
-        raise IllegalArrayLiteral()
-    def visitDecl(self, ast, c):
-        pass
-    def visitStoreDecl(self, ast, c):
-        pass
-    def visitAssign(self, ast, c):
-        raise TypeMismatchInStatement()
-        raise CannotAssignToConstant()
-    def visitIf(self, ast, c):
-        raise TypeMismatchInStatement()
-    def visitFor(self, ast, c):
+    def visitMethodDecl(self,ast, c:Class_Check):
+        # c:Class_Check
+        '''
+        TODO:
+        Check:
+            + Redeclared(Method(),method_name)
+        Store: method name
+        '''
+        class_ = c
+        isStatic = type(ast.kind) is Static
+        class_.add_method(ast.name,isStatic,ast.param)
+        [self.visit(ast.body,(c,class_.get_method(ast.name)))]
 
-        raise TypeMismatchInStatement()
-    def visitBreak(self, ast, c):
-        raise MustInLoop()
-    def visitContinue(self, ast, c):
-        raise MustInLoop()
-    def visitReturn(self, ast, c):
-        raise TypeMismatchInStatement()
-    def visitCallStmt(self, ast, c):
-        raise TypeMismatchInExpression()
-        raise TypeMismatchInStatement()
-        raise Undeclared()
-    def visitVarDecl(self, ast, c):
-        raise Redeclared()
-    def visitBlock(self, ast, c):
-        # c : (classname, methodname)
+######################    Stmt    ######################
+
+    def visitBlock(self, ast, c:tuple):
+        # c : (Class_Check,Method_Check)
+        class_ = c[0]
+        method_ = c[1]
+        method_.enterScope()
         [self.visit(x,c) for x in ast.inst]
+        method_.exitScope()
 
-    def visitConstDecl(self, ast, c):
-        raise IllegalConstantExpression()
-        raise TypeMismatchInConstant(ast)
-        raise Redeclared()
-    def visitClassDecl(self, ast:ClassDecl, c:None) -> ClassHelper:
-        if self.classmng.checkredeclared(ast.classname):
-            raise Redeclared(Class(),ast.classname)
+
+    def visitAssign(self, ast, c:tuple):
+        lhs = self.visit(ast.lhs,c)
+        rhs = self.visit(ast.rhs,c)
+        if not isinstance(ast.lhs, LHS) or lhs[1]:
+            raise CannotAssignToConstant(ast)
+        if lhs[0] != rhs[0]:
+            int_float = lhs[0] == FloatType() and rhs[0] == IntType()
+            sub_super = type(lhs[0]) is ClassType and type(rhs[0]) is ClassType\
+            and rhs[0].classname not in self.classmng.get_class(lhs[0].classname).mro
+            if not int_float or not sub_super:
+                raise TypeMismatchInStatement(ast)
+
+    def visitIf(self, ast, c:tuple):
+        cond = self.visit(ast.expr)
+        if cond[0] != BoolType():
+            raise TypeMismatchInStatement(ast)
+        self.visit(thenStmt,c)
+        self.visit(elseStmt,c)
+
+    def visitFor(self, ast, c:tuple):
+        class_ = c[0]
+        method_ = c[1]
+        method_.enterScope()
+        method_.enterLoop()
+        self.visit(VarDecl(Id(ast.variable),IntType()))
+        expr1 = self.visit(ast.expr1)
+        expr2 = self.visit(ast.expr2)
+        if expr1[0] != IntType() or expr2[0] != IntType():
+            raise TypeMismatchInStatement(ast)
+        # raise CannotAssignToConstant(statement)
+        self.visit(ast.stmt,c)
+        method_.exitLoop()
+        method_.exitScope()
+    
+    def visitBreak(self, ast, c:tuple):
+        class_ = c[0]
+        method_ = c[1]
+        if method_.inLoop == 0: 
+            raise MustInLoop()
+    
+    def visitContinue(self, ast, c:tuple):
+        class_ = c[0]
+        method_ = c[1]
+        if method_.inLoop == 0: 
+            raise MustInLoop()
+
+    def visitReturn(self, ast, c:tuple):
+        class_ = c[0]
+        method_ = c[1]
+        method_.rettype = self.visit(ast.expr,c)[0]
+        # raise TypeMismatchInStatement()
+
+    def visitCallStmt(self, ast, c=None):
+        objtyp = self.visit(ast.obj,c)[0]
+        if type(objtyp) is not ClassType:
+            raise TypeMismatchInStatement(ast)
         
-        self.classmng.addclass(ast.classname,ast.parentname)
-        [self.visit(x) for x in ast.memlist]
-    def visitSIKind(self, ast, c):
-        pass
-    def visitInstance(self, ast, c):
-        pass
-    def visitStatic(self, ast, c):
-        pass
-    def visitMethodDecl(self, ast, c):
-        # c:class name
-        self.classmng.add_method(c,ast.param)
-        self.visit(ast.block, (c,ast.name))
-    def visitAttributeDecl(self, ast, c):
-        raise Redeclared()
-    def visitIntType(self, ast, c):
-        pass
-    def visitFloatType(self, ast, c):
-        pass
-    def visitBoolType(self, ast, c):
-        pass
-    def visitStringType(self, ast, c):
-        pass
-    def visitArrayType(self, ast, c):
-        pass
-    def visitClassType(self, ast, c):
-        pass
-    def visitVoidType(self, ast, c):
-        pass
+        class_name = objtyp.name
+        class_ = self.classmng.get_class(class_name)
+        method_ = class_.get_method(ast.method.name)
+        if method_.rettype:
+            raise TypeMismatchInStatement(ast)
+        
+        paratyp = [self.visit(x,c)[0] for x in ast.param]
+        if method_.paratype != paratyp:
+            raise TypeMismatchInStatement(ast)
+
+######################    StoreDecl    ######################
+
+    def visitVarDecl(self, ast, c=None):
+        class_ = c[0]
+        method_ = c[1]
+        method_.var_decl(ast.variable.name,ast.varType)
+        expr = self.visit(ast.varInit,c)
+        if expr[0] != ast.varType:
+            raise TypeMismatchInStatement(ast)
+
+
+    def visitConstDecl(self, ast, c=None):
+        class_ = c[0]
+        method_ = c[1]
+        method_.const_decl(ast.variable.name,ast.varType)
+        expr = self.visit(ast.value)
+        if not ast.expr or not expr[1]:
+            raise IllegalConstantExpression(ast.value)
+        if expr[0] != ast.constType:
+            raise TypeMismatchInStatement(ast)
+
+
+######################    Expr    ######################
+
+    # Expr return (Type, Const)
+    def visitBinaryOp(self, ast, c=None):
+        typel = self.visit(ast.left,c)
+        typer = self.visit(ast.right,c)
+        type1 = typel[0]
+        type2 = typer[0]
+        if expr.op in ['+','-','*','/']:
+            if type(type1) not in [IntType, FloatType] or type(type2) not in [IntType, FloatType]:
+                raise TypeMismatchInExpression(ast)
+            if type(type1) is IntType and type(type2) is IntType:
+                return (IntType(), typel[1] and typer[1])
+            return (FloatType(), typel[1] and typer[1])
+
+        if expr.op in ['<','<=','>','>=']:
+            if type(type1) not in [IntType, FloatType] or type(type2) not in [IntType, FloatType]:
+                raise TypeMismatchInExpression(ast)
+            return (BoolType(), typel[1] and typer[1])
+
+    def visitUnaryOp(self, ast, c=None):
+        typ = self.visit(ast.body,c)[0]
+        if ast.op in ['-'] and type(typ) not in [FloatType,IntType]:
+            raise TypeMismatchInExpression(ast.body)
+        elif ast.op in ['!'] and type(typ) not in [BoolType]:
+            raise TypeMismatchInExpression(ast.body)
+        return (typ, True)
+
+
+    def visitCallExpr(self, ast, c=None):
+        '''
+        TODO:
+        Check type
+        '''
+        objtyp = self.visit(ast.obj,c)[0]
+        if type(objtyp) is not ClassType:
+            raise TypeMismatchInExpression(ast)
+        
+        class_name = objtyp.name
+        class_ = self.classmng.get_class(class_name)
+        method_ = class_.get_method(ast.method.name)
+        if not method_.rettype:
+            raise TypeMismatchInExpression(ast)
+        
+        paratyp = [self.visit(x,c)[0] for x in ast.param]
+        if method_.paratype != paratyp:
+            raise TypeMismatchInExpression(ast)
+
+        if method_.rettype:
+            raise TypeMismatchInExpression(ast)
+        return (method_rettype, True)
+
+    def visitNewExpr(self, ast:NewExpr, c=None):
+        return (ClassType(ast.classname), True)
+    def visitIntLiteral(self, ast:IntLiteral, c=None):
+        return (IntType(), True)
+    def visitFloatLiteral(self, ast:FloatLiteral, c=None):
+        return (FloatType(), True)
+    def visitStringLiteral(self, ast:StringLiteral, c=None):
+        return (StringType(), True)
+    def visitBooleanLiteral(self, ast:BooleanLiteral, c=None):
+        return (BoolType(), True)
+    def visitNullLiteral(self, ast:NullLiteral, c=None):
+        return None
+    def visitSelfLiteral(self, ast:SelfLiteral, c:tuple):
+        return (ClassType(c[0].name), True)
+    def visitArrayLiteral(self, ast:ArrayLiteral, c=None):
+        typ = [self.visit(x,c)[0] for x in ast.value]
+        if typ:
+            typ_ini = typ[0]
+            for i in range(len(ast.value)):
+                if typ[i] != typ_ini:
+                    raise IllegalArrayLiteral()
+        return (ArrayType(len(typ),typ_ini), True)
+
+    # LHS return (Type, Constant)
+    def visitId(self, ast, c:tuple):
+        '''
+        TODO:
+        Return type of Id (if any) else return None
+        '''
+        class_ = c[0]
+        method_ = c[1]
+        if ast.name not in method_.variable:
+            raise Undeclared(Variable(),ast.name)
+        return (method_.variable[ast.name].typ, method_.variable[ast.name].constant)
+
+    def visitArrayCell(self, ast, c=None):
+        arrtyp = self.visit(ast.arr,c)
+        indtyp = [self.visit(x,c) for x in ast.idx]
+        if type(arrtyp) is not ArrayType:
+            raise TypeMismatchInExpression(ast)
+        for x in indtyp:
+            if type(x) is not IntType:
+                raise TypeMismatchInExpression(ast)
+        return (arrtyp.eleType, False)
+
+    def visitFieldAccess(self, ast, c:tuple):
+        class_ = c[0]
+        method_ = c[1]
+        objtyp = self.visit(ast.obj,c)[0]
+        if type(objtyp) is not ClassType:
+            raise TypeMismatchInExpression(ast.obj)
+
+        objcls = self.classmng.get_class(objtyp.classname)
+        if ast.fieldname.id not in objcls.att:
+            raise IllegalMemberAccess(ast.fieldname)
+        att = objcls.get_attribute(ast.fieldname.name)
+        return (att.type, att.constant)
