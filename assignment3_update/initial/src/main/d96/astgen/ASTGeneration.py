@@ -5,8 +5,6 @@ from functools import reduce
 
 class ASTGeneration(D96Visitor):
     def visitProgram(self, ctx):
-        for x in ctx.getChildren():
-            print(type(x))
         return Program(list(map(lambda x: x.accept(self), ctx.class_dcl())))
 
     # Visit a parse tree produced by D96Parser#class_dcl.
