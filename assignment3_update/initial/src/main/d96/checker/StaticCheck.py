@@ -164,12 +164,12 @@ class Class_Check:
 
     def _check_redeclared_method(self, name:str, typelst:List[VarDecl]):
         # if name in self.method.keys() and self.method[name].paratype == list(map(lambda x: x.varType,typelst)):
-        if name in self.method.keys() or name in self.att.keys():
+        if name in self.method.keys():
             raise Redeclared(Method(), name)
 
     def _check_redeclared_attribute(self, name:str):
         # if name in self.att:
-        if name in self.method.keys() or name in self.att.keys():
+        if name in self.att.keys():
             raise Redeclared(Attribute(),name)
 
 class ClassManager:
@@ -208,7 +208,8 @@ class ClassManager:
             return True
         if type(typ1) is FloatType and type(typ2) is IntType:
             return True
-        if type(typ1) is ClassType and type(typ2) is ClassType and typ1.classname.name in self.get_class(typ2.classname.name).mro:
+        # if type(typ1) is ClassType and type(typ2) is ClassType and typ1.classname.name in self.get_class(typ2.classname.name).mro:
+        if type(typ1) is ClassType and type(typ2) is ClassType and typ1.classname.name == typ2.classname.name:
             return True
         if type(typ1) is ArrayType and type(typ2) is ArrayType:
             return typ1.size == typ2.size and self.compatible_type(typ1.eleType,typ2.eleType)
@@ -335,10 +336,16 @@ class StaticChecker(BaseVisitor,Utils):
 ######################    MemDecl    ######################
 
     def visitAttributeDecl(self, ast, c:Class_Check):
-        # c:Class_Check
+        '''
+        c:(Class_Check,None)
+        Separating from ConstDecl and VarDecl because
+        c[1] is None but ConstDecl and VarDecl use
+        c[1] as Method_Check
+        '''
         class_ = c[0]
         static = self.visit(ast.kind,c)
         const = type(ast.decl) is ConstDecl
+        
         if type(ast.decl) is ConstDecl:
             typ = ast.decl.constType
             att_name = ast.decl.constant.name
@@ -355,7 +362,10 @@ class StaticChecker(BaseVisitor,Utils):
                 raise Undeclared(Class(),expr_typ.classname.name)
 
         if expr_typ and not self.classmng.compatible_type(typ,expr_typ[0]):
-            raise TypeMismatchInStatement(ast)
+            if type(ast.decl) is ConstDecl:
+                raise TypeMismatchInConstant(ast.decl)
+            raise TypeMismatchInStatement(ast.decl)
+
         class_.add_attribute(att_name,typ,static,const)
 
     def visitMethodDecl(self,ast, c:Class_Check):
@@ -496,6 +506,11 @@ class StaticChecker(BaseVisitor,Utils):
         typer = self.visit(ast.right,c)
         type1 = typel[0]
         type2 = typer[0]
+        if ast.op in ['%']:
+            if type(type1) is not IntType or type(type2) is not IntType:
+                raise TypeMismatchInExpression(ast)
+            return (IntType(), typel[1] and typer[1])
+
         if ast.op in ['+','-','*','/']:
             if type(type1) not in [IntType, FloatType] or type(type2) not in [IntType, FloatType]:
                 raise TypeMismatchInExpression(ast)
@@ -515,6 +530,11 @@ class StaticChecker(BaseVisitor,Utils):
 
         if ast.op in ['+.','==.']:
             if type(type1) is not StringType or type(type2) is not StringType:
+                raise TypeMismatchInExpression(ast)
+            return (StringType(), typel[1] and typer[1]) if ast.op == '+.' else (BoolType(), typel[1] and typer[1])
+
+        if ast.op in ['!=','==']:
+            if not (type(type1) is IntType and type(type2) is IntType or type(type1) is BoolType and type(type2) is BoolType):
                 raise TypeMismatchInExpression(ast)
             return (StringType(), typel[1] and typer[1]) if ast.op == '+.' else (BoolType(), typel[1] and typer[1])
 
@@ -615,15 +635,20 @@ class StaticChecker(BaseVisitor,Utils):
 
     def visitArrayCell(self, ast, c=None):
         array = self.visit(ast.arr,c)
-        print(array[1])
         arrtyp = array[0]
         indtyp = [self.visit(x,c)[0] for x in ast.idx]
         if type(arrtyp) is not ArrayType:
             raise TypeMismatchInExpression(ast)
+        rettyp = arrtyp
         for x in indtyp:
+            if hasattr(rettyp,'eleType'):
+                rettyp = rettyp.eleType
+            else:
+                raise TypeMismatchInExpression(ast)
             if type(x) is not IntType:
                 raise TypeMismatchInExpression(ast)
-        return (arrtyp.eleType, array[1])
+        
+        return (rettyp, array[1])
 
     def visitFieldAccess(self, ast, c:tuple):
         class_ = c[0]
@@ -631,7 +656,10 @@ class StaticChecker(BaseVisitor,Utils):
         obj = self.visit(ast.obj,c)
         objtyp = obj[0]
         if type(objtyp) is not ClassType:
-            raise IllegalMemberAccess(ast.obj)
+            if type(ast.obj) is Id and ast.obj.name in self.classmng.objid:
+                objtyp = ClassType(Id(ast.obj.name+','))
+            else:
+                raise IllegalMemberAccess(ast.obj)
         instance = True
 
         if objtyp.classname.name[-1] == ',':
