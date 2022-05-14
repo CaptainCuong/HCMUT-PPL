@@ -4,7 +4,7 @@
 """
 from AST import * 
 from Visitor import *
-from Utils import Utils
+# from Utils import Utils
 from StaticError import *
 
 class MType:
@@ -48,6 +48,7 @@ class Method_Check:
         self.isStatic = static
         self.inLoop = 0
         self.variable = {}
+        self.ret_const = False
         self.scope = 1
         for var in para:
             self.para_decl(var.variable.name,var.varType)
@@ -97,7 +98,7 @@ class Method_Check:
                 raise Undeclared(Variable(),name)
 
     def _checkmain(self):
-        return self.name == 'main'
+        return self.name == 'main' and not self.rettype and not self.paratype
 
     def get_type(self):
         return self.rettype
@@ -134,12 +135,12 @@ class Class_Check:
         self.mro = []
         self.name = name
         self.construct_type = []
-        if inherited:
-            self.att = inherited.att.copy()
-            self.method = inherited.method.copy()
-            self.mro = [name] + inherited.mro.copy()
-        else:
-            self.mro = [name]
+        # if inherited:
+            # self.att = inherited.att.copy()
+            # self.method = inherited.method.copy()
+            # self.mro = [name] + inherited.mro.copy()
+        # else:
+        #     self.mro = [name]
 
     def add_attribute(self, name:str, att_type:Type, isStatic=False, const=False):
         self._check_redeclared_attribute(name)
@@ -160,7 +161,7 @@ class Class_Check:
         return self.att[att_name]
 
     def checkentry(self):
-        return any([x._checkmain() == 'main' for x in self.method.values()])
+        return any([x._checkmain() for x in self.method.values()])
 
     def _check_redeclared_method(self, name:str, typelst:List[VarDecl]):
         # if name in self.method.keys() and self.method[name].paratype == list(map(lambda x: x.varType,typelst)):
@@ -224,7 +225,7 @@ class ClassManager:
             raise Undeclared(Class(),cls_name)
 
 
-class StaticChecker(BaseVisitor,Utils):
+class StaticChecker(BaseVisitor):
 
     # global_envi = [
     # Symbol("getInt",MType([],IntType())),
@@ -439,8 +440,11 @@ class StaticChecker(BaseVisitor,Utils):
     def visitReturn(self, ast, c:tuple):
         class_ = c[0]
         method_ = c[1]
-        method_.rettype = self.visit(ast.expr,c)[0]
-        # raise TypeMismatchInStatement()
+        expr = self.visit(ast.expr,c)
+        method_.rettype = expr[0]
+        method_.ret_const = expr[1]
+        if method_.name == 'main' and method_.paratype == [] and method_.rettype:
+            raise TypeMismatchInStatement(ast)
 
     def visitCallStmt(self, ast, c=None):
         objtyp = self.visit(ast.obj,c)[0]
@@ -578,7 +582,7 @@ class StaticChecker(BaseVisitor,Utils):
             if not self.classmng.compatible_type(x[0],x[1]):
                 raise TypeMismatchInExpression(ast)
 
-        return (method_.rettype, False)
+        return (method_.rettype, method_.ret_const)
     def visitStatic(self,ast,c):
         return True
     def visitInstance(self,ast,c):
@@ -610,7 +614,11 @@ class StaticChecker(BaseVisitor,Utils):
     def visitSelfLiteral(self, ast:SelfLiteral, c:tuple):
         return (ClassType(Id(c[0].name)), True)
     def visitArrayLiteral(self, ast:ArrayLiteral, c=None):
-        typ = [self.visit(x,c)[0] for x in ast.value]
+        try:
+            typ = [self.visit(x,c)[0] for x in ast.value]
+        except IllegalArrayLiteral:
+            raise IllegalArrayLiteral(ast)
+
         if typ:
             typ_ini = typ[0]
             for i in range(len(ast.value)):
@@ -626,15 +634,22 @@ class StaticChecker(BaseVisitor,Utils):
         '''
         class_ = c[0]
         method_ = c[1]
-        if ast.name not in list(method_.variable.keys()) + list(self.classmng.objid.keys()):
-            raise Undeclared(Identifier(),ast.name)
-        if ast.name in method_.variable:
-            return (method_.variable[ast.name][-1].typ, method_.variable[ast.name][-1].constant)
+        if method_:
+            if ast.name not in list(method_.variable.keys()) + list(self.classmng.objid.keys()):
+                raise Undeclared(Identifier(),ast.name)
+            if ast.name in method_.variable:
+                return (method_.variable[ast.name][-1].typ, method_.variable[ast.name][-1].constant)
+            else:
+                return (ClassType(Id(ast.name+',')), True)
         else:
-            return (ClassType(Id(ast.name+',')), False)
+            if ast.name not in list(self.classmng.objid.keys()):
+                raise Undeclared(Identifier(),ast.name)
+            return (ClassType(Id(ast.name+',')), True)
+
 
     def visitArrayCell(self, ast, c=None):
         array = self.visit(ast.arr,c)
+        # print(array[1])
         arrtyp = array[0]
         indtyp = [self.visit(x,c)[0] for x in ast.idx]
         if type(arrtyp) is not ArrayType:
