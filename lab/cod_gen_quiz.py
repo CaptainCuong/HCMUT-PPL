@@ -141,3 +141,5 @@
             self.emit.printout(self.emit.emitVAR(o.frame.currIndex,ctx.name,ctx.typ,o.frame.startLabel[-1],o.frame.endLabel[-1]))
             o.frame.setCurrIndex(o.frame.getCurrIndex()+1)
             return Symbol(ctx.name,ctx.typ,Index(o.frame.getCurrIndex()-1))
+
+###################################################################################################
